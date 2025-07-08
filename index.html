@@ -5,47 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mirror Horror</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <!-- Intro Video -->
+  <!-- Intro video full screen -->
   <video id="introVideo" autoplay muted playsinline class="fullscreen-video">
     <source src="https://cdn.ironman.my.id/i/86jnep.mp4" type="video/mp4">
   </video>
 
-  <!-- Main Content (hidden at first) -->
+  <!-- Main content (hidden at first) -->
   <div id="mainContent" class="hidden">
-    <!-- Background Music -->
+    <!-- Background music -->
     <audio autoplay loop>
       <source src="https://cdn.ironman.my.id/i/g8zux1.mp4" type="audio/mp4">
     </audio>
 
-    <!-- Mirror Video -->
-    <div class="mirror-container">
+    <!-- Mirror video -->
+    <div class="mirror-box">
       <video id="mirrorVideo" poster="https://cdn.ironman.my.id/i/xltg2m.jpg" controls playsinline>
         <source src="https://cdn.ironman.my.id/i/86jnep.mp4" type="video/mp4">
       </video>
-      <div class="click-to-play">Click to Play</div>
+      <div class="click-overlay">CLICK TO PLAY</div>
     </div>
 
-    <!-- Coming Soon -->
-    <h1 class="coming-soon">Coming Soon</h1>
-
-    <!-- About -->
-    <p class="about">__.yadhu.__</p>
+    <!-- Coming Soon Text -->
+    <h1 class="coming">COMING SOON</h1>
+    <p class="about">___.YADHU.___</p>
   </div>
 
   <script>
-    // Show main content after intro video ends
-    const intro = document.getElementById("introVideo");
-    const main = document.getElementById("mainContent");
+    // Wait for intro video to end
+    const intro = document.getElementById('introVideo');
+    const mainContent = document.getElementById('mainContent');
 
     intro.onended = () => {
       intro.style.display = "none";
-      main.classList.remove("hidden");
+      mainContent.classList.remove('hidden');
     };
+
+    // Remove click text after user clicks the mirror video
+    const mirrorVideo = document.getElementById('mirrorVideo');
+    const clickOverlay = document.querySelector('.click-overlay');
+
+    mirrorVideo.addEventListener('play', () => {
+      clickOverlay.style.display = 'none';
+    });
   </script>
 </body>
 </html>
