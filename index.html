@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mirror Mirror - Motion Poster</title>
+    <title>MIRROR MIRROR - Horror Experience</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Special+Elite&family=Creepster&display=swap" rel="stylesheet">
     <style>
@@ -32,68 +32,128 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 20px;
             position: relative;
             z-index: 2;
         }
 
+        /* Header Styles */
         header {
-            text-align: center;
-            padding: 30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
             margin-bottom: 30px;
-            position: relative;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
         }
 
-        header::after {
+        .logo {
+            font-family: 'Creepster', cursive;
+            font-size: 2.5rem;
+            color: #ff00ff;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #b19cd9;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Special Elite', cursive;
+        }
+
+        nav a:hover {
+            color: #ff00ff;
+        }
+
+        nav a::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #8a2be2, transparent);
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff00ff;
+            transition: width 0.3s ease;
         }
 
-        .title {
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            margin: 40px 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero h1 {
             font-family: 'Cinzel Decorative', serif;
             font-size: 5rem;
+            margin-bottom: 30px;
             text-transform: uppercase;
             letter-spacing: 5px;
-            color: #fff;
-            text-shadow: 
-                0 0 10px #8a2be2,
-                0 0 20px #8a2be2,
-                0 0 30px #8a2be2;
-            margin-bottom: 20px;
+            background: linear-gradient(90deg, #e6e6ff, #b19cd9, #8a2be2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px rgba(177, 156, 217, 0.6);
+            position: relative;
+            line-height: 1.1;
             animation: flicker 3s infinite alternate;
         }
 
-        .subtitle {
+        .hero p {
             font-size: 1.8rem;
-            color: #b19cd9;
-            max-width: 700px;
-            margin: 0 auto 40px;
+            margin: 40px 0;
+            color: #d8bfd8;
             line-height: 1.6;
-            text-shadow: 0 0 5px rgba(177, 156, 217, 0.5);
         }
 
-        .divider {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #8a2be2, #ff00ff, #8a2be2, transparent);
-            margin: 40px auto;
-            width: 70%;
-            border-radius: 2px;
-            box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+        .warning {
+            display: inline-block;
+            background: rgba(178, 34, 34, 0.2);
+            color: #ff6b6b;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            animation: pulse 2s infinite;
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+            font-family: 'Creepster', cursive;
+            text-transform: uppercase;
+        }
+
+        /* Motion Poster Section */
+        .motion-poster {
+            margin: 80px 0;
+            text-align: center;
         }
 
         .section-title {
             font-family: 'Creepster', cursive;
             font-size: 3.5rem;
             text-align: center;
-            margin: 60px 0 40px;
+            margin-bottom: 40px;
             color: #ff00ff;
             text-shadow: 
                 0 0 10px #ff00ff,
@@ -115,7 +175,6 @@
             border: 3px solid #8a2be2;
             transform: perspective(1000px) rotateX(5deg);
             transition: transform 0.5s;
-            cursor: pointer;
         }
 
         .poster-container:hover {
@@ -142,12 +201,12 @@
 
         .poster-title {
             position: absolute;
-            top: 20px;
+            top: 30px;
             left: 0;
             width: 100%;
             text-align: center;
             font-family: 'Creepster', cursive;
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: #fff;
             text-shadow: 
                 0 0 10px #ff00ff,
@@ -158,7 +217,7 @@
 
         .poster-details {
             position: absolute;
-            bottom: 20px;
+            bottom: 30px;
             left: 0;
             width: 100%;
             text-align: center;
@@ -183,7 +242,7 @@
 
         .credit {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 25px;
             font-size: 1.5rem;
             color: #b19cd9;
             text-shadow: 0 0 5px rgba(177, 156, 217, 0.5);
@@ -195,32 +254,51 @@
             text-shadow: 0 0 10px #ff00ff;
         }
 
+        /* Dimensional Section */
+        .dimensional {
+            text-align: center;
+            padding: 80px 20px;
+            background: rgba(18, 8, 43, 0.5);
+            border-radius: 15px;
+            margin: 80px 0;
+            border: 1px solid #8a2be2;
+        }
+
+        .dimensional h2 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 4rem;
+            margin-bottom: 30px;
+            color: #e6e6ff;
+            text-shadow: 0 0 10px #8a2be2;
+        }
+
+        .dimensional p {
+            font-size: 1.8rem;
+            color: #b19cd9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
         /* Team Section */
         .team-section {
-            background: rgba(10, 5, 25, 0.7);
-            padding: 60px 30px;
-            border-radius: 15px;
-            margin: 60px 0;
-            border: 1px solid #8a2be2;
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
-            position: relative;
-            overflow: hidden;
+            margin: 80px 0;
+            text-align: center;
         }
 
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            max-width: 800px;
+            gap: 25px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .team-member {
             background: rgba(40, 20, 80, 0.3);
-            padding: 25px 15px;
-            border-radius: 10px;
+            padding: 30px 20px;
+            border-radius: 15px;
             border: 1px solid rgba(138, 43, 226, 0.3);
-            text-align: center;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -233,7 +311,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: var(--accent);
+            background: #8a2be2;
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.3s ease;
@@ -246,11 +324,10 @@
         .team-member:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
-            background: rgba(60, 30, 120, 0.4);
         }
 
         .team-member h3 {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             color: #e6e6ff;
             margin-bottom: 10px;
             font-family: 'Special Elite', cursive;
@@ -260,9 +337,9 @@
         /* Rules Section */
         .rules-section {
             background: linear-gradient(to bottom, rgba(18, 8, 43, 0.9), rgba(10, 5, 25, 0.9));
-            padding: 60px 30px;
+            padding: 80px 40px;
             border-radius: 15px;
-            margin: 60px 0;
+            margin: 80px 0;
             border: 1px solid #ff0000;
             position: relative;
             overflow: hidden;
@@ -282,14 +359,14 @@
         }
 
         .rules-container {
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .rule {
             background: rgba(30, 15, 60, 0.6);
-            padding: 25px;
-            margin-bottom: 25px;
+            padding: 30px;
+            margin-bottom: 30px;
             border-radius: 10px;
             border-left: 5px solid #ff0000;
             display: flex;
@@ -299,76 +376,71 @@
 
         .rule:hover {
             transform: translateX(10px);
-            background: rgba(50, 15, 70, 0.7);
         }
 
         .rule-number {
             font-family: 'Creepster', cursive;
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: #ff0000;
-            margin-right: 20px;
-            min-width: 60px;
+            margin-right: 25px;
+            min-width: 70px;
             text-align: center;
         }
 
         .rule-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
+            font-size: 2rem;
+            margin-bottom: 15px;
             color: #fff;
             font-family: 'Special Elite', cursive;
         }
 
         .rule-content p {
             color: #b19cd9;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             line-height: 1.6;
         }
 
         .warning-box {
             background: rgba(178, 34, 34, 0.3);
             border: 2px solid #ff0000;
-            padding: 25px;
+            padding: 30px;
             border-radius: 10px;
-            margin-top: 40px;
+            margin-top: 50px;
             text-align: center;
         }
 
         .warning-box p {
-            font-size: 1.5rem;
-            color: #ff6b6b;
-            font-family: 'Creepster', cursive;
-            letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            margin-top: 60px;
-            position: relative;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #8a2be2, transparent);
-        }
-
-        .footer-warning {
             font-size: 1.8rem;
             color: #ff6b6b;
-            margin: 20px 0;
             font-family: 'Creepster', cursive;
             letter-spacing: 2px;
             text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
 
-        /* Mirror effect */
+        footer {
+            text-align: center;
+            padding: 60px 0 40px;
+            margin-top: 80px;
+            position: relative;
+            border-top: 1px solid rgba(138, 43, 226, 0.3);
+        }
+
+        .footer-warning {
+            font-size: 2rem;
+            color: #ff6b6b;
+            margin: 25px 0;
+            font-family: 'Creepster', cursive;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+        }
+
+        .copyright {
+            margin-top: 30px;
+            font-size: 1.1rem;
+            color: rgba(177, 156, 217, 0.7);
+        }
+
+        /* Mirror Effects */
         .mirror-effect {
             position: fixed;
             top: 0;
@@ -381,50 +453,26 @@
             mix-blend-mode: overlay;
         }
 
-        /* Interactive Mirror */
-        .interactive-mirror {
-            position: fixed;
+        .ghost-reflection {
+            position: absolute;
+            width: 200px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+            z-index: 0;
+            animation: float-ghost 15s infinite ease-in-out;
+        }
+
+        .ghost-reflection::before {
+            content: '🪞';
+            position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 300px;
-            height: 400px;
-            border: 3px solid #8a2be2;
-            border-radius: 15px;
-            background: url('https://cdn.ironman.my.id/i/xltg2m.jpg') center/cover;
-            box-shadow: 
-                0 0 50px rgba(138, 43, 226, 0.8),
-                0 0 100px rgba(255, 0, 255, 0.6);
-            z-index: 100;
-            display: none;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        
-        .mirror-reflection {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, 
-                rgba(255,255,255,0.1) 0%, 
-                rgba(255,255,255,0.05) 50%,
-                rgba(255,255,255,0.1) 100%);
-            pointer-events: none;
-        }
-        
-        .mirror-warning {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            color: #ff0000;
-            font-family: 'Creepster', cursive;
-            font-size: 1.8rem;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
-            animation: blink 1.5s infinite;
+            font-size: 3rem;
+            opacity: 0.3;
         }
 
         /* Animations */
@@ -441,6 +489,23 @@
                 text-shadow: 
                     0 0 5px #8a2be2,
                     0 0 10px #8a2be2;
+            }
+        }
+
+        @keyframes pulse {
+            0% { 
+                box-shadow: 0 0 0 0 rgba(178, 34, 34, 0.4);
+                transform: scale(1);
+            }
+            50% { 
+                transform: scale(1.05);
+            }
+            70% { 
+                box-shadow: 0 0 0 15px rgba(178, 34, 34, 0);
+            }
+            100% { 
+                box-shadow: 0 0 0 0 rgba(178, 34, 34, 0);
+                transform: scale(1);
             }
         }
 
@@ -469,68 +534,90 @@
                 transform: translateY(-10px);
             }
         }
-        
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
 
-        .scan-line {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background: rgba(0, 255, 255, 0.3);
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-            z-index: 100;
-            animation: scan 4s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes scan {
-            0% {
-                top: 0;
+        @keyframes float-ghost {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0.2;
             }
-            100% {
-                top: 100%;
+            25% {
+                transform: translate(50px, -50px) rotate(5deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(0, -80px) rotate(0deg);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translate(-50px, -50px) rotate(-5deg);
+                opacity: 0.3;
             }
         }
 
         /* Responsive design */
         @media (max-width: 768px) {
-            .title {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .hero h1 {
                 font-size: 3.5rem;
             }
+            
+            .hero p {
+                font-size: 1.5rem;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
             .section-title {
                 font-size: 2.8rem;
             }
+            
             .poster-title {
+                font-size: 2.8rem;
+            }
+            
+            .dimensional h2 {
                 font-size: 3rem;
             }
-            .mirror-prof {
-                font-size: 1.8rem;
-            }
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
+            
+            .dimensional p {
+                font-size: 1.5rem;
             }
         }
 
         @media (max-width: 480px) {
-            .title {
+            .hero h1 {
                 font-size: 2.8rem;
             }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+            
+            .warning {
+                font-size: 1.5rem;
+                padding: 12px 25px;
+            }
+            
             .section-title {
                 font-size: 2.2rem;
             }
+            
             .poster-title {
+                font-size: 2.2rem;
+            }
+            
+            .rule-number {
                 font-size: 2.5rem;
             }
-            .mirror-prof {
-                font-size: 1.5rem;
-            }
-            .team-grid {
-                grid-template-columns: 1fr;
+            
+            .rule-content h3 {
+                font-size: 1.6rem;
             }
         }
     </style>
@@ -539,42 +626,56 @@
     <!-- Mirror effect overlay -->
     <div class="mirror-effect"></div>
     
-    <!-- Scan line effect -->
-    <div class="scan-line"></div>
-    
-    <!-- Interactive Mirror (hidden by default) -->
-    <div class="interactive-mirror">
-        <div class="mirror-reflection"></div>
-        <div class="mirror-warning">DO NOT LOOK DIRECTLY</div>
-    </div>
+    <!-- Ghost mirror reflections -->
+    <div class="ghost-reflection" style="top: 15%; left: 10%;"></div>
+    <div class="ghost-reflection" style="top: 40%; right: 15%; animation-delay: 5s;"></div>
+    <div class="ghost-reflection" style="bottom: 20%; left: 20%; animation-delay: 10s;"></div>
     
     <div class="container">
         <header>
-            <h1 class="title">Dimensional</h1>
-            <p class="subtitle">Experience reflections across multiple dimensions and realities, each with its own rules and consequences.</p>
+            <div class="logo">MIRROR MIRROR</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#dimensional">Dimensional</a></li>
+                    <li><a href="#poster">Motion Poster</a></li>
+                    <li><a href="#team">The Creators</a></li>
+                    <li><a href="#rules">Rules</a></li>
+                </ul>
+            </nav>
         </header>
 
-        <div class="divider"></div>
-
-        <h2 class="section-title">Motion Poster</h2>
-        
-        <div class="poster-container" id="posterTrigger">
-            <img src="https://cdn.ironman.my.id/i/xltg2m.jpg" alt="Mirror Mirror Motion Poster" class="poster-image">
-            <div class="poster-overlay"></div>
-            <div class="poster-title">TITLE POSTER</div>
-            <div class="poster-details">
-                <div class="mirror-prof">MIRROR PROF.</div>
-                <div class="timer">0:08 / 0:08</div>
+        <section class="hero">
+            <h1>MIRROR MIRROR</h1>
+            <p>A journey through reflections where reality bends and truth becomes elusive</p>
+            <div class="warning">
+                DON'T BREAK THE RULES
             </div>
-        </div>
-        
-        <div class="credit">
-            Created by <strong>@__.yadhuu.__</strong>
-        </div>
+            <p>Enter a world where every reflection tells a story and nothing is as it seems</p>
+        </section>
 
-        <div class="divider"></div>
-        
-        <div class="team-section">
+        <section id="dimensional" class="dimensional">
+            <h2>Dimensional</h2>
+            <p>Experience reflections across multiple dimensions and realities, each with its own rules and consequences.</p>
+        </section>
+
+        <section id="poster" class="motion-poster">
+            <h2 class="section-title">Motion Poster</h2>
+            <div class="poster-container">
+                <img src="https://cdn.ironman.my.id/i/xltg2m.jpg" alt="Mirror Mirror Motion Poster" class="poster-image">
+                <div class="poster-overlay"></div>
+                <div class="poster-title">TITLE POSTER</div>
+                <div class="poster-details">
+                    <div class="mirror-prof">MIRROR PROF.</div>
+                    <div class="timer">0:08 / 0:08</div>
+                </div>
+            </div>
+            <div class="credit">
+                Created by <strong>@__.yadhuu.__</strong>
+            </div>
+        </section>
+
+        <section id="team" class="team-section">
             <h2 class="section-title">The Creators</h2>
             <div class="team-grid">
                 <div class="team-member">
@@ -599,14 +700,12 @@
                     <h3>SHAJHON</h3>
                 </div>
             </div>
-        </div>
-        
-        <div class="divider"></div>
-        
-        <div class="rules-section">
+        </section>
+
+        <section id="rules" class="rules-section">
             <h2 class="section-title">About The Game</h2>
             <div class="rules-container">
-                <p style="text-align: center; font-size: 1.5rem; margin-bottom: 50px; color: #b19cd9;">
+                <p style="text-align: center; font-size: 1.8rem; margin-bottom: 50px; color: #b19cd9; max-width: 800px; margin-left: auto; margin-right: auto;">
                     Mirror Mirror is not just a game - it's an experience that will challenge your perception of reality. 
                     Play carefully, as the reflections hold more power than you realize.
                 </p>
@@ -641,67 +740,55 @@
                     <p>WARNING: FAILURE TO FOLLOW THESE RULES MAY HAVE UNPREDICTABLE CONSEQUENCES</p>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 
     <footer>
         <p class="footer-warning">Beware what you see in the mirror</p>
         <p>© 2025 Mirror Mirror. All rights reserved.</p>
-        <p>Enter at your own risk - reflections may reveal more than you expect</p>
+        <p class="copyright">Enter at your own risk - reflections may reveal more than you expect</p>
     </footer>
 
     <script>
-        // Interactive mirror effect
+        // Animation effects
         document.addEventListener('DOMContentLoaded', function() {
-            const poster = document.getElementById('posterTrigger');
-            const interactiveMirror = document.querySelector('.interactive-mirror');
-            
-            // Show interactive mirror when clicking on poster
-            poster.addEventListener('click', function() {
-                interactiveMirror.style.display = 'block';
-                
-                // Add flickering effect to the mirror
-                let flickerCount = 0;
-                const flickerInterval = setInterval(() => {
-                    interactiveMirror.style.opacity = Math.random() > 0.5 ? 0.8 : 1;
-                    flickerCount++;
-                    
-                    if (flickerCount > 15) {
-                        clearInterval(flickerInterval);
-                        interactiveMirror.style.opacity = 1;
-                    }
-                }, 200);
-            });
-            
-            // Hide interactive mirror when clicking on it
-            interactiveMirror.addEventListener('click', function() {
-                this.style.display = 'none';
-            });
-            
-            // Add random glitch effect to text
-            const glitchElements = document.querySelectorAll('.title, .section-title');
-            setInterval(() => {
-                if (Math.random() > 0.7) {
-                    glitchElements.forEach(el => {
-                        el.style.textShadow = `0 0 ${Math.floor(Math.random() * 20) + 10}px rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 100)}, 255, 0.8)`;
-                        setTimeout(() => {
-                            el.style.textShadow = '';
-                        }, 300);
-                    });
-                }
-            }, 2000);
-            
-            // Add warning animation to rules
-            const warnings = document.querySelectorAll('.warning-box p, .footer-warning');
+            // Add flickering effect to warnings
+            const warnings = document.querySelectorAll('.warning, .footer-warning, .warning-box p');
             setInterval(() => {
                 warnings.forEach(warning => {
-                    warning.style.transform = 'scale(1.05)';
-                    warning.style.color = `hsl(${Math.floor(Math.random() * 30)}, 100%, 70%)`;
-                    setTimeout(() => {
-                        warning.style.transform = '';
-                    }, 500);
+                    if (Math.random() > 0.7) {
+                        warning.style.textShadow = `0 0 15px rgba(255, ${Math.floor(Math.random() * 100) + 50}, ${Math.floor(Math.random() * 100) + 50}, 0.8)`;
+                        setTimeout(() => {
+                            warning.style.textShadow = '';
+                        }, 300);
+                    }
                 });
+            }, 2000);
+            
+            // Add random glitch effect to titles
+            const titles = document.querySelectorAll('h1, h2, h3');
+            setInterval(() => {
+                if (Math.random() > 0.8) {
+                    titles.forEach(title => {
+                        title.style.transform = 'translateX(' + (Math.random() * 10 - 5) + 'px)';
+                        setTimeout(() => {
+                            title.style.transform = '';
+                        }, 200);
+                    });
+                }
             }, 3000);
+            
+            // Add hover effect to team members
+            const members = document.querySelectorAll('.team-member');
+            members.forEach(member => {
+                member.addEventListener('mouseenter', () => {
+                    member.style.boxShadow = '0 15px 35px rgba(138, 43, 226, 0.6)';
+                });
+                
+                member.addEventListener('mouseleave', () => {
+                    member.style.boxShadow = '';
+                });
+            });
         });
     </script>
 </body>
