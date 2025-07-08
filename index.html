@@ -35,6 +35,44 @@
             line-height: 1.6;
         }
 
+        /* Flickering effect */
+        .flicker {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.05);
+            pointer-events: none;
+            animation: flicker 0.8s infinite alternate;
+            z-index: 100;
+            opacity: 0;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.05; }
+            5% { opacity: 0.1; }
+            10% { opacity: 0.07; }
+            15% { opacity: 0.08; }
+            20% { opacity: 0.1; }
+            25% { opacity: 0.2; }
+            30% { opacity: 0.3; }
+            35% { opacity: 0.1; }
+            40% { opacity: 0.25; }
+            45% { opacity: 0.3; }
+            50% { opacity: 0.4; }
+            55% { opacity: 0.2; }
+            60% { opacity: 0.3; }
+            65% { opacity: 0.1; }
+            70% { opacity: 0.2; }
+            75% { opacity: 0.3; }
+            80% { opacity: 0.05; }
+            85% { opacity: 0.1; }
+            90% { opacity: 0.15; }
+            95% { opacity: 0.05; }
+            100% { opacity: 0; }
+        }
+
         body::before {
             content: '';
             position: fixed;
@@ -55,6 +93,8 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 10;
         }
 
         header {
@@ -94,77 +134,18 @@
             text-shadow: 0 0 20px rgba(177, 156, 217, 0.5);
             letter-spacing: 1px;
             position: relative;
+            animation: glitch-effect 3s infinite alternate;
         }
 
-        .logo h1::before,
-        .logo h1::after {
-            content: "MIRROR MIRROR";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .logo h1::before {
-            color: var(--glitch-color-1);
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim 5s infinite linear alternate-reverse;
-        }
-
-        .logo h1::after {
-            color: var(--glitch-color-2);
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim2 5s infinite linear alternate-reverse;
-        }
-
-        @keyframes glitch-anim {
-            0% { clip: rect(42px, 9999px, 44px, 0); }
-            5% { clip: rect(12px, 9999px, 59px, 0); }
-            10% { clip: rect(48px, 9999px, 29px, 0); }
-            15% { clip: rect(42px, 9999px, 73px, 0); }
-            20% { clip: rect(63px, 9999px, 27px, 0); }
-            25% { clip: rect(34px, 9999px, 55px, 0); }
-            30% { clip: rect(86px, 9999px, 73px, 0); }
-            35% { clip: rect(20px, 9999px, 20px, 0); }
-            40% { clip: rect(26px, 9999px, 60px, 0); }
-            45% { clip: rect(25px, 9999px, 66px, 0); }
-            50% { clip: rect(57px, 9999px, 98px, 0); }
-            55% { clip: rect(5px, 9999px, 46px, 0); }
-            60% { clip: rect(82px, 9999px, 31px, 0); }
-            65% { clip: rect(54px, 9999px, 27px, 0); }
-            70% { clip: rect(28px, 9999px, 99px, 0); }
-            75% { clip: rect(45px, 9999px, 69px, 0); }
-            80% { clip: rect(23px, 9999px, 85px, 0); }
-            85% { clip: rect(54px, 9999px, 84px, 0); }
-            90% { clip: rect(45px, 9999px, 47px, 0); }
-            95% { clip: rect(37px, 9999px, 20px, 0); }
-            100% { clip: rect(73px, 9999px, 99px, 0); }
-        }
-
-        @keyframes glitch-anim2 {
-            0% { clip: rect(65px, 9999px, 100px, 0); }
-            5% { clip: rect(52px, 9999px, 74px, 0); }
-            10% { clip: rect(79px, 9999px, 85px, 0); }
-            15% { clip: rect(75px, 9999px, 5px, 0); }
-            20% { clip: rect(67px, 9999px, 61px, 0); }
-            25% { clip: rect(14px, 9999px, 79px, 0); }
-            30% { clip: rect(1px, 9999px, 66px, 0); }
-            35% { clip: rect(86px, 9999px, 30px, 0); }
-            40% { clip: rect(23px, 9999px, 98px, 0); }
-            45% { clip: rect(85px, 9999px, 72px, 0); }
-            50% { clip: rect(71px, 9999px, 75px, 0); }
-            55% { clip: rect(2px, 9999px, 48px, 0); }
-            60% { clip: rect(30px, 9999px, 16px, 0); }
-            65% { clip: rect(59px, 9999px, 50px, 0); }
-            70% { clip: rect(41px, 9999px, 62px, 0); }
-            75% { clip: rect(2px, 9999px, 82px, 0); }
-            80% { clip: rect(47px, 9999px, 73px, 0); }
-            85% { clip: rect(3px, 9999px, 27px, 0); }
-            90% { clip: rect(26px, 9999px, 55px, 0); }
-            95% { clip: rect(42px, 9999px, 97px, 0); }
-            100% { clip: rect(38px, 9999px, 49px, 0); }
+        @keyframes glitch-effect {
+            0% { transform: translateX(0); }
+            1% { transform: translateX(-3px) skewX(5deg); }
+            2% { transform: translateX(3px) skewX(-5deg); }
+            3% { transform: translateX(0); }
+            50% { transform: translateX(0); }
+            51% { transform: translateX(4px) skewX(-3deg); }
+            52% { transform: translateX(-4px) skewX(3deg); }
+            53% { transform: translateX(0); }
         }
 
         nav ul {
@@ -228,19 +209,13 @@
             text-shadow: 0 0 25px rgba(177, 156, 217, 0.6);
             position: relative;
             line-height: 1.1;
-            animation: flicker 3s infinite alternate;
+            animation: flicker 3s infinite alternate, float 5s infinite ease-in-out;
         }
 
-        @keyframes flicker {
-            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-                text-shadow: 0 0 25px rgba(177, 156, 217, 0.6);
-                opacity: 1;
-            }
-            20%, 24%, 55% {
-                text-shadow: 0 0 35px rgba(177, 156, 217, 0.8),
-                             0 0 60px rgba(177, 156, 217, 0.4);
-                opacity: 0.9;
-            }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
         }
 
         .hero h2::after {
@@ -253,6 +228,13 @@
             height: 4px;
             background: linear-gradient(90deg, var(--accent), #5d0ebd);
             border-radius: 2px;
+            animation: pulse-line 2s infinite;
+        }
+
+        @keyframes pulse-line {
+            0% { width: 250px; opacity: 1; }
+            50% { width: 300px; opacity: 0.7; }
+            100% { width: 250px; opacity: 1; }
         }
 
         .hero p {
@@ -330,10 +312,11 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            transform-style: preserve-3d;
         }
 
         .mirror-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) rotateY(5deg);
             box-shadow: 0 15px 35px rgba(138, 43, 226, 0.3);
             border-color: rgba(138, 43, 226, 0.5);
         }
@@ -393,6 +376,13 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
             border: 2px solid var(--accent);
             position: relative;
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateY(0deg);
+            transition: transform 0.5s;
+        }
+
+        .video-container:hover {
+            transform: perspective(1000px) rotateY(-5deg);
         }
 
         .video-container::before {
@@ -467,6 +457,12 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px) rotateY(5deg);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
         }
 
         .team-member::before {
@@ -484,11 +480,6 @@
 
         .team-member:hover::before {
             transform: scaleX(1);
-        }
-
-        .team-member:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
         }
 
         .team-member h3 {
@@ -524,6 +515,13 @@
             border: 1px solid var(--accent);
             position: relative;
             overflow: hidden;
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(0deg);
+            transition: transform 0.5s;
+        }
+
+        .rules-section:hover {
+            transform: perspective(1000px) rotateX(2deg);
         }
 
         .rules-section::before {
@@ -657,6 +655,8 @@
             box-shadow: 0 0 50px rgba(138, 43, 226, 0.8);
             background: url('https://images.unsplash.com/photo-1531685250784-7569952593d2?q=80&w=1974') center/cover;
             overflow: hidden;
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
         }
 
         .mirror-reflection {
@@ -768,29 +768,91 @@
             display: inline-block;
         }
 
-        .glitch-text::before,
-        .glitch-text::after {
-            content: attr(data-text);
-            position: absolute;
+        /* Ghost Effect */
+        .ghost {
+            position: fixed;
+            width: 200px;
+            height: 300px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300"><path fill="rgba(255,255,255,0.1)" d="M100,20 C60,20 30,50 30,90 C30,120 50,140 70,160 C50,180 30,210 30,250 C30,280 60,300 100,300 C140,300 170,280 170,250 C170,210 150,180 130,160 C150,140 170,120 170,90 C170,50 140,20 100,20 Z"/></svg>') center/contain no-repeat;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 5;
+            animation: floatGhost 15s linear infinite;
+        }
+
+        @keyframes floatGhost {
+            0% { transform: translateX(-100px) translateY(100px) scale(0.8); opacity: 0; }
+            10% { opacity: 0.2; }
+            30% { transform: translateX(200px) translateY(50px) scale(1); opacity: 0.3; }
+            50% { transform: translateX(500px) translateY(150px) scale(0.9); opacity: 0.2; }
+            70% { transform: translateX(800px) translateY(80px) scale(1.1); opacity: 0.3; }
+            90% { transform: translateX(1100px) translateY(120px) scale(0.8); opacity: 0.1; }
+            100% { transform: translateX(1300px) translateY(100px) scale(0.7); opacity: 0; }
+        }
+
+        /* Eyes that follow cursor */
+        .eyes {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle at 30px 40px, #000 15px, transparent 16px),
+                        radial-gradient(circle at 70px 40px, #000 15px, transparent 16px);
+            border-radius: 50%;
+            z-index: 5;
+            pointer-events: none;
+            opacity: 0.7;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Particles */
+        .particles {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: transparent;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        .glitch-text::before {
-            left: 2px;
-            text-shadow: -1px 0 var(--glitch-color-1);
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim 5s infinite linear alternate-reverse;
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(177, 156, 217, 0.7);
+            border-radius: 50%;
+            animation: floatParticle linear infinite;
         }
 
-        .glitch-text::after {
-            left: -2px;
-            text-shadow: -1px 0 var(--glitch-color-2);
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        @keyframes floatParticle {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+        }
+
+        /* Audio Controls */
+        .audio-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(138, 43, 226, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s;
+        }
+
+        .audio-control:hover {
+            background: var(--accent);
+            transform: scale(1.1);
         }
 
         /* Responsive Design */
@@ -861,6 +923,15 @@
     </style>
 </head>
 <body>
+    <div class="flicker"></div>
+    <div class="ghost"></div>
+    <div class="eyes"></div>
+    <div class="particles"></div>
+    
+    <div class="audio-control" id="audioControl">
+        <i class="fas fa-volume-up"></i>
+    </div>
+    
     <div class="container">
         <header>
             <div class="logo">
@@ -904,7 +975,7 @@
         </section>
 
         <section id="video" class="video-section">
-            <h2 class="team-section">THE MOTION POSTER </h2>
+            <h2 class="team-section">THE GAME TRAILER</h2>
             <div class="video-container">
                 <video controls poster="https://cdn.ironman.my.id/i/xltg2m.jpg">
                     <source src="https://cdn.ironman.my.id/i/86jnep.mp4" type="video/mp4">
@@ -983,7 +1054,7 @@
 
     <div class="interactive-mirror" id="interactiveMirror">
         <div class="close-mirror" id="closeMirror">×</div>
-        <div class="mirror">
+        <div class="mirror-frame">
             <div class="mirror-reflection" id="mirrorReflection">
                 <h3 class="glitch-text" data-text="YOU BROKE THE RULES">YOU BROKE THE RULES</h3>
                 <p>What you see is not a reflection...</p>
@@ -1004,8 +1075,20 @@
             <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
         
-        <p class="copyright">© 2025 Mirror Mirror. All rights reserved.Create by @__. yadhuu.__ </p>
+        <p class="copyright">© 2025 Mirror Mirror. All rights reserved.</p>
     </footer>
+
+    <audio id="bgAudio" loop>
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-horror-ambience-492.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="mirrorAudio">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-horror-laugh-428.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="jumpscareAudio">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-woman-scream-1235.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -1014,15 +1097,44 @@
             const interactiveMirror = document.getElementById('interactiveMirror');
             const closeMirror = document.getElementById('closeMirror');
             const mirrorReflection = document.getElementById('mirrorReflection');
+            const audioControl = document.getElementById('audioControl');
+            const bgAudio = document.getElementById('bgAudio');
+            const mirrorAudio = document.getElementById('mirrorAudio');
+            const jumpscareAudio = document.getElementById('jumpscareAudio');
+            const eyes = document.querySelector('.eyes');
+            const ghost = document.querySelector('.ghost');
+            const flicker = document.querySelector('.flicker');
+            
+            // Set initial audio state
+            bgAudio.volume = 0.3;
+            bgAudio.muted = true;
             
             // Show interactive mirror
             function showMirror() {
                 interactiveMirror.style.opacity = '1';
                 interactiveMirror.style.pointerEvents = 'all';
                 
+                // Play mirror sound
+                mirrorAudio.currentTime = 0;
+                mirrorAudio.play();
+                
                 // Show reflection after a delay
                 setTimeout(() => {
                     mirrorReflection.style.opacity = '1';
+                    
+                    // Random chance for jumpscare
+                    if (Math.random() > 0.5) {
+                        setTimeout(() => {
+                            jumpscareAudio.currentTime = 0;
+                            jumpscareAudio.play();
+                            
+                            // Visual jumpscare effect
+                            document.body.style.backgroundColor = "#ff0000";
+                            setTimeout(() => {
+                                document.body.style.backgroundColor = "";
+                            }, 200);
+                        }, 3000);
+                    }
                 }, 1000);
             }
             
@@ -1035,10 +1147,19 @@
                 }, 500);
             }
             
+            // Toggle audio
+            function toggleAudio() {
+                bgAudio.muted = !bgAudio.muted;
+                audioControl.innerHTML = bgAudio.muted ? 
+                    '<i class="fas fa-volume-mute"></i>' : 
+                    '<i class="fas fa-volume-up"></i>';
+            }
+            
             // Event listeners
             warningBtn.addEventListener('click', showMirror);
             footerWarning.addEventListener('click', showMirror);
             closeMirror.addEventListener('click', hideMirror);
+            audioControl.addEventListener('click', toggleAudio);
             
             // Click anywhere on mirror to close
             interactiveMirror.addEventListener('click', function(e) {
@@ -1047,16 +1168,65 @@
                 }
             });
             
+            // Eyes follow cursor
+            document.addEventListener('mousemove', function(e) {
+                eyes.style.left = e.pageX + 'px';
+                eyes.style.top = e.pageY + 'px';
+            });
+            
+            // Create particles
+            function createParticles() {
+                const particlesContainer = document.querySelector('.particles');
+                const particleCount = 100;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Random properties
+                    const size = Math.random() * 3 + 1;
+                    const posX = Math.random() * 100;
+                    const duration = Math.random() * 20 + 10;
+                    const delay = Math.random() * 5;
+                    
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${posX}%`;
+                    particle.style.animationDuration = `${duration}s`;
+                    particle.style.animationDelay = `${delay}s`;
+                    
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            
+            // Initialize
+            createParticles();
+            
+            // Random ghost appearances
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    ghost.style.opacity = 0.3;
+                    setTimeout(() => {
+                        ghost.style.opacity = 0;
+                    }, 3000);
+                }
+            }, 10000);
+            
+            // Random flicker intensity
+            setInterval(() => {
+                flicker.style.opacity = Math.random() * 0.1;
+            }, 300);
+            
             // Mirror card animations
             const cards = document.querySelectorAll('.mirror-card');
             cards.forEach(card => {
                 card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'translateY(-15px)';
+                    card.style.transform = 'translateY(-15px) rotateY(5deg)';
                     card.style.boxShadow = '0 20px 40px rgba(138, 43, 226, 0.4)';
                 });
                 
                 card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'translateY(0)';
+                    card.style.transform = 'translateY(0) rotateY(0deg)';
                     card.style.boxShadow = '0 15px 35px rgba(138, 43, 226, 0.3)';
                 });
             });
@@ -1071,12 +1241,12 @@
             const members = document.querySelectorAll('.team-member');
             members.forEach(member => {
                 member.addEventListener('mouseenter', () => {
-                    member.style.transform = 'translateY(-15px)';
+                    member.style.transform = 'translateY(-10px) rotateY(5deg)';
                     member.style.boxShadow = '0 15px 30px rgba(138, 43, 226, 0.5)';
                 });
                 
                 member.addEventListener('mouseleave', () => {
-                    member.style.transform = 'translateY(0)';
+                    member.style.transform = 'translateY(0) rotateY(0deg)';
                     member.style.boxShadow = '0 10px 25px rgba(138, 43, 226, 0.4)';
                 });
             });
@@ -1086,13 +1256,21 @@
                 const headings = document.querySelectorAll('h1, h2, h3');
                 headings.forEach(heading => {
                     if (Math.random() > 0.8) {
-                        heading.classList.add('glitch-text');
+                        heading.style.textShadow = `0 0 10px rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.8)`;
                         setTimeout(() => {
-                            heading.classList.remove('glitch-text');
+                            heading.style.textShadow = '';
                         }, 500);
                     }
                 });
             }, 3000);
+            
+            // Start background audio with user interaction
+            document.addEventListener('click', function initAudio() {
+                if (bgAudio.paused) {
+                    bgAudio.play().catch(e => console.log("Audio play prevented:", e));
+                }
+                document.removeEventListener('click', initAudio);
+            });
         });
     </script>
 </body>
