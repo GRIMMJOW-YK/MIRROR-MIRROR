@@ -1,63 +1,82 @@
 body {
-  margin: 0;
-  background-color: black;
-  font-family: 'Creepster', cursive;
-  overflow: hidden;
-  color: white;
-  text-align: center;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
-.fullscreen-video {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 10;
+#video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #000 url('https://cdn.ironman.my.id/i/xltg2m.jpg') no-repeat center center;
+    background-size: cover;
 }
 
-.hidden {
-  display: none;
+#video-background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
 }
 
-#mainContent {
-  padding: 20px;
-  background: black;
+.content {
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: 0 auto;
+    transition: all 0.5s ease;
 }
 
-.mirror-box {
-  position: relative;
-  display: inline-block;
-  margin-top: 20px;
+h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
 }
 
-.mirror-box video {
-  width: 90vw;
-  max-width: 600px;
-  border: 4px solid #333;
-  border-radius: 10px;
-  box-shadow: 0 0 20px red;
+h2 {
+    font-size: 2rem;
+    margin: 1rem 0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
-.click-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: red;
-  font-size: 32px;
-  text-shadow: 0 0 10px black;
-  pointer-events: none;
-  z-index: 2;
+.separator {
+    width: 80%;
+    height: 1px;
+    background-color: #fff;
+    margin: 2rem auto;
+    opacity: 0.5;
 }
 
-.coming {
-  color: red;
-  font-size: 48px;
-  margin-top: 40px;
+.names {
+    font-size: 1.2rem;
+    line-height: 2;
+    margin: 2rem 0;
+    letter-spacing: 1px;
 }
 
-.about {
-  color: white;
-  font-size: 24px;
-  margin-top: 10px;
+.mirror-text {
+    font-size: 2.5rem;
+    letter-spacing: 5px;
+    margin: 1rem 0;
+    text-transform: uppercase;
 }
+
+.coming-soon {
+    font-size: 1.5rem;
+    margin-top
