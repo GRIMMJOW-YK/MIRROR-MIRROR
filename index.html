@@ -666,10 +666,8 @@
             border: 15px solid #2a0b4e;
             border-radius: 10px;
             box-shadow: 0 0 50px rgba(138, 43, 226, 0.8);
-            background: url('https://images.unsplash.com/photo-1531685250784-7569952593d2?q=80&w=1974') center/cover;
             overflow: hidden;
             transform-style: preserve-3d;
-            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
             animation: breathing 3s infinite ease-in-out;
         }
 
@@ -677,6 +675,14 @@
             0% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1); }
             50% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.02); }
             100% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1); }
+        }
+
+        #cameraFeed {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scaleX(-1); /* Mirror effect */
+            filter: grayscale(0.8) contrast(1.2) brightness(0.9);
         }
 
         .mirror-reflection {
@@ -706,6 +712,66 @@
             font-size: 2rem;
             cursor: pointer;
             z-index: 10;
+        }
+
+        /* Camera permission */
+        .camera-permission {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 5, 25, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            z-index: 10;
+        }
+
+        .camera-permission h3 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--warning);
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+        }
+
+        .camera-permission p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .permission-btn {
+            background: rgba(138, 43, 226, 0.3);
+            color: var(--text);
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            border: 2px solid var(--accent);
+            transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+            margin: 10px;
+        }
+
+        .permission-btn:hover {
+            background: var(--accent);
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.6);
+        }
+
+        .deny-btn {
+            background: rgba(178, 34, 34, 0.3);
+            border-color: var(--warning);
+        }
+
+        .deny-btn:hover {
+            background: var(--warning);
         }
 
         footer {
@@ -994,6 +1060,11 @@
             .rules-section h2 {
                 font-size: 2.5rem;
             }
+            
+            .mirror-frame {
+                width: 90%;
+                height: 60vh;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1026,6 +1097,19 @@
             
             .logo h1 {
                 font-size: 2rem;
+            }
+            
+            .mirror-frame {
+                width: 95%;
+                height: 50vh;
+            }
+            
+            .camera-permission h3 {
+                font-size: 2rem;
+            }
+            
+            .camera-permission p {
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -1090,7 +1174,7 @@
         </section>
 
         <section id="video" class="video-section">
-            <h2 class="team-section">THE MOTION POSTER</h2>
+            <h2 class="team-section">THE MOTION POSTER </h2>
             <div class="video-container">
                 <video controls poster="https://cdn.ironman.my.id/i/xltg2m.jpg">
                     <source src="https://cdn.ironman.my.id/i/86jnep.mp4" type="video/mp4">
@@ -1170,11 +1254,21 @@
     <div class="interactive-mirror" id="interactiveMirror">
         <div class="close-mirror" id="closeMirror">×</div>
         <div class="mirror-frame">
+            <video id="cameraFeed" autoplay playsinline></video>
             <div class="distortion"></div>
             <div class="mirror-reflection" id="mirrorReflection">
                 <h3 class="glitch-text" data-text="YOU BROKE THE RULES">YOU BROKE THE RULES</h3>
                 <p>What you see is not a reflection...</p>
                 <p>It's watching you.</p>
+            </div>
+            <div class="camera-permission" id="cameraPermission">
+                <h3>WARNING</h3>
+                <p>To experience the true horror of Mirror Mirror, we need access to your camera. This will allow the mirror to reflect your reality and reveal what lies beyond.</p>
+                <p>Are you brave enough to face your own reflection?</p>
+                <div>
+                    <button class="permission-btn" id="allowCamera">ALLOW CAMERA</button>
+                    <button class="permission-btn deny-btn" id="denyCamera">DENY AND ESCAPE</button>
+                </div>
             </div>
         </div>
     </div>
@@ -1191,7 +1285,7 @@
             <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
         
-        <p class="copyright">© 2025 Mirror Mirror. All rights reserved.created by @__yadhuu.__</p>
+        <p class="copyright">© 2025 Mirror Mirror. All rights reserved.created by @__. yadhuu.__</p>
     </footer>
 
     <audio id="bgAudio" loop>
@@ -1221,6 +1315,10 @@
             const interactiveMirror = document.getElementById('interactiveMirror');
             const closeMirror = document.getElementById('closeMirror');
             const mirrorReflection = document.getElementById('mirrorReflection');
+            const cameraPermission = document.getElementById('cameraPermission');
+            const allowCameraBtn = document.getElementById('allowCamera');
+            const denyCameraBtn = document.getElementById('denyCamera');
+            const cameraFeed = document.getElementById('cameraFeed');
             const audioControl = document.getElementById('audioControl');
             const bgAudio = document.getElementById('bgAudio');
             const mirrorAudio = document.getElementById('mirrorAudio');
@@ -1231,55 +1329,87 @@
             const ghost = document.querySelector('.ghost');
             const flicker = document.querySelector('.flicker');
             
+            let cameraStream = null;
+            
             // Set initial audio state
             bgAudio.volume = 0.3;
             mirrorAudio.volume = 0.6;
             jumpscareAudio.volume = 0.7;
             whisperAudio.volume = 0.4;
             heartbeatAudio.volume = 0.3;
-            bgAudio.muted = false;
+            bgAudio.muted = true;
             
             // Show interactive mirror
             function showMirror() {
                 interactiveMirror.style.opacity = '1';
                 interactiveMirror.style.pointerEvents = 'all';
+                cameraPermission.style.display = 'flex';
                 
                 // Play mirror sound
                 mirrorAudio.currentTime = 0;
                 mirrorAudio.play();
-                
-                // Start heartbeat
-                heartbeatAudio.currentTime = 0;
-                heartbeatAudio.play();
-                
-                // Show reflection after a delay
-                setTimeout(() => {
-                    mirrorReflection.style.opacity = '1';
-                    
-                    // Random chance for jumpscare
-                    if (Math.random() > 0.3) {
-                        setTimeout(() => {
-                            jumpscareAudio.currentTime = 0;
-                            jumpscareAudio.play();
-                            
-                            // Visual jumpscare effect
-                            document.body.style.backgroundColor = "#ff0000";
-                            setTimeout(() => {
-                                document.body.style.backgroundColor = "";
-                            }, 200);
-                        }, 3000);
-                    }
-                }, 1000);
             }
             
             // Hide interactive mirror
             function hideMirror() {
                 mirrorReflection.style.opacity = '0';
                 heartbeatAudio.pause();
+                
+                // Stop camera if active
+                if (cameraStream) {
+                    cameraStream.getTracks().forEach(track => track.stop());
+                    cameraStream = null;
+                }
+                
                 setTimeout(() => {
                     interactiveMirror.style.opacity = '0';
                     interactiveMirror.style.pointerEvents = 'none';
                 }, 500);
+            }
+            
+            // Request camera access
+            function requestCameraAccess() {
+                if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                    navigator.mediaDevices.getUserMedia({ video: true })
+                        .then(function(stream) {
+                            cameraStream = stream;
+                            cameraFeed.srcObject = stream;
+                            cameraPermission.style.display = 'none';
+                            
+                            // Start heartbeat
+                            heartbeatAudio.currentTime = 0;
+                            heartbeatAudio.play();
+                            
+                            // Show reflection after a delay
+                            setTimeout(() => {
+                                mirrorReflection.style.opacity = '1';
+                                
+                                // Random chance for jumpscare
+                                if (Math.random() > 0.3) {
+                                    setTimeout(() => {
+                                        jumpscareAudio.currentTime = 0;
+                                        jumpscareAudio.play();
+                                        
+                                        // Visual jumpscare effect
+                                        document.body.style.backgroundColor = "#ff0000";
+                                        setTimeout(() => {
+                                            document.body.style.backgroundColor = "";
+                                        }, 200);
+                                    }, 3000);
+                                }
+                            }, 1000);
+                        })
+                        .catch(function(err) {
+                            console.error("Camera access denied: ", err);
+                            cameraPermission.querySelector('p').innerHTML = 
+                                "Camera access denied. Without the mirror, you are safe... for now.<br>But remember, they can still see you.";
+                            allowCameraBtn.style.display = 'none';
+                        });
+                } else {
+                    cameraPermission.querySelector('p').innerHTML = 
+                        "Your device does not support camera access. You have escaped the mirror... this time.";
+                    allowCameraBtn.style.display = 'none';
+                }
             }
             
             // Toggle audio
@@ -1303,6 +1433,8 @@
             warningBtn.addEventListener('click', showMirror);
             footerWarning.addEventListener('click', showMirror);
             closeMirror.addEventListener('click', hideMirror);
+            allowCameraBtn.addEventListener('click', requestCameraAccess);
+            denyCameraBtn.addEventListener('click', hideMirror);
             audioControl.addEventListener('click', toggleAudio);
             
             // Click anywhere on mirror to close
