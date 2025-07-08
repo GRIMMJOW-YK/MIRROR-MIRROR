@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  color: white;
+  font-family: 'Cinzel', serif;
+  overflow: hidden;
+}
+
+.video-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 9999;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.click-to-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'MedievalSharp', cursive;
+  font-size: 2em;
+  color: red;
+  cursor: pointer;
+  text-shadow: 2px 2px 4px black;
+}
+
+.hidden {
+  display: none;
+}
+
+.main-content {
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(to bottom, #000, #111);
+  min-height: 100vh;
+}
+
+.logo {
+  font-family: 'MedievalSharp', cursive;
+  font-size: 2.5em;
+  color: red;
+}
+
+.logo span {
+  margin-left: 10px;
+}
+
+.poster img {
+  width: 90%;
+  max-width: 400px;
+  border: 3px solid red;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+footer {
+  margin-top: 30px;
+  font-size: 0.9em;
+  color: #aaa;
+}
+
+footer a {
+  color: red;
+  text-decoration: none;
+}
