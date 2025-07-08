@@ -5,20 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIRROR MIRROR</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #0a0a1a;
+            --secondary: #1a1a2e;
+            --accent: #8a2be2;
+            --accent-light: #b19cd9;
+            --text: #e6e6ff;
+            --warning: #ff6b6b;
+            --dark-purple: #12082b;
         }
 
         body {
-            background: linear-gradient(135deg, #0a0a1a, #1a1a2e);
-            color: #e6e6ff;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--text);
             min-height: 100vh;
             overflow-x: hidden;
+            font-family: 'Exo 2', sans-serif;
             position: relative;
+            line-height: 1.6;
         }
 
         body::before {
@@ -28,8 +40,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(70, 70, 180, 0.1) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 70%, rgba(120, 0, 200, 0.1) 0%, transparent 40%);
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(70, 70, 180, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(120, 0, 200, 0.1) 0%, transparent 40%),
+                repeating-linear-gradient(45deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 1px, transparent 1px, transparent 21px),
+                repeating-linear-gradient(135deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 1px, transparent 1px, transparent 21px);
             pointer-events: none;
             z-index: -1;
         }
@@ -45,8 +60,19 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 0;
-            border-bottom: 1px solid rgba(102, 51, 153, 0.3);
-            margin-bottom: 40px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
         }
 
         .logo {
@@ -55,21 +81,15 @@
         }
 
         .logo h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            background: linear-gradient(90deg, #8a2be2, #5d0ebd);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, var(--accent-light), #e6e6ff);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
-            letter-spacing: -1px;
-        }
-
-        .logo span {
-            color: #9370db;
-            font-size: 1.2rem;
-            margin-left: 8px;
-            font-weight: 300;
+            text-shadow: 0 0 20px rgba(177, 156, 217, 0.5);
+            letter-spacing: 1px;
         }
 
         nav ul {
@@ -79,16 +99,19 @@
         }
 
         nav a {
-            color: #b19cd9;
+            color: var(--accent-light);
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Orbitron', sans-serif;
         }
 
         nav a:hover {
-            color: #e6e6ff;
+            color: var(--text);
         }
 
         nav a::after {
@@ -98,7 +121,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #8a2be2, #5d0ebd);
+            background: var(--accent);
             transition: width 0.3s ease;
         }
 
@@ -110,20 +133,25 @@
             text-align: center;
             padding: 60px 20px;
             margin: 40px 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero h2 {
-            font-size: 4.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4.8rem;
+            font-weight: 900;
+            margin-bottom: 30px;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            background: linear-gradient(90deg, #e6e6ff, #b19cd9);
+            letter-spacing: 4px;
+            background: linear-gradient(90deg, #e6e6ff, var(--accent-light));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(177, 156, 217, 0.4);
+            text-shadow: 0 0 25px rgba(177, 156, 217, 0.6);
             position: relative;
+            line-height: 1.1;
         }
 
         .hero h2::after {
@@ -132,9 +160,9 @@
             bottom: -20px;
             left: 50%;
             transform: translateX(-50%);
-            width: 200px;
+            width: 250px;
             height: 4px;
-            background: linear-gradient(90deg, #8a2be2, #5d0ebd);
+            background: linear-gradient(90deg, var(--accent), #5d0ebd);
             border-radius: 2px;
         }
 
@@ -142,44 +170,152 @@
             font-size: 1.8rem;
             margin: 40px 0;
             color: #d8bfd8;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
             line-height: 1.6;
         }
 
         .highlight {
-            color: #9370db;
+            color: var(--accent-light);
             font-weight: bold;
-            text-shadow: 0 0 10px rgba(147, 112, 219, 0.5);
         }
 
         .warning {
             display: inline-block;
             background: rgba(178, 34, 34, 0.2);
-            color: #ff6b6b;
-            padding: 10px 25px;
+            color: var(--warning);
+            padding: 12px 30px;
             border-radius: 30px;
             font-weight: bold;
             margin: 30px 0;
             border: 1px solid rgba(255, 107, 107, 0.3);
             animation: pulse 2s infinite;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(178, 34, 34, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(178, 34, 34, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(178, 34, 34, 0); }
+            0% { 
+                box-shadow: 0 0 0 0 rgba(178, 34, 34, 0.4);
+                transform: scale(1);
+            }
+            50% { 
+                transform: scale(1.05);
+            }
+            70% { 
+                box-shadow: 0 0 0 15px rgba(178, 34, 34, 0);
+            }
+            100% { 
+                box-shadow: 0 0 0 0 rgba(178, 34, 34, 0);
+                transform: scale(1);
+            }
         }
 
-        .video-section {
+        .mirror-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 80px 0;
+        }
+
+        .mirror-card {
+            background: rgba(25, 25, 50, 0.5);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
             position: relative;
+            overflow: hidden;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .mirror-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(138, 43, 226, 0.3);
+            border-color: rgba(138, 43, 226, 0.5);
+        }
+
+        .mirror-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .mirror-card:hover::before {
+            opacity: 1;
+        }
+
+        .mirror-card i {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin-bottom: 25px;
+            transition: transform 0.4s ease;
+        }
+
+        .mirror-card:hover i {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .mirror-card h4 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .mirror-card p {
+            color: var(--accent-light);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Video Section */
+        .video-section {
+            margin: 100px 0;
+            text-align: center;
+        }
+
+        .video-container {
             max-width: 900px;
-            margin: 60px auto;
+            margin: 0 auto;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(138, 43, 226, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+            border: 2px solid var(--accent);
+            position: relative;
+        }
+
+        .video-container::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0.7;
+            animation: gradient-border 4s linear infinite;
+            background-size: 400% 400%;
+        }
+
+        @keyframes gradient-border {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         video {
@@ -188,145 +324,237 @@
             outline: none;
         }
 
+        /* Team Section */
         .team-section {
+            margin: 100px 0;
             text-align: center;
-            margin: 70px 0;
-            padding: 40px 20px;
-            background: rgba(25, 25, 50, 0.4);
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(138, 43, 226, 0.2);
         }
 
-        .team-section h3 {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            color: #b19cd9;
+        .team-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 60px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .team-members {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .member {
-            background: linear-gradient(135deg, rgba(65, 45, 110, 0.5), rgba(40, 20, 80, 0.5));
-            padding: 25px 35px;
-            border-radius: 15px;
-            min-width: 200px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(138, 43, 226, 0.3);
-        }
-
-        .member:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(138, 43, 226, 0.3);
-            background: linear-gradient(135deg, rgba(85, 65, 140, 0.6), rgba(60, 40, 100, 0.6));
-        }
-
-        .member h4 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            color: #e6e6ff;
-        }
-
-        .member p {
-            color: #b19cd9;
-            font-size: 1.1rem;
-        }
-
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #8a2be2, transparent);
-            margin: 20px 0;
-        }
-
-        .coming-soon {
-            text-align: center;
-            margin: 80px 0;
+            letter-spacing: 3px;
+            color: var(--text);
             position: relative;
+            display: inline-block;
         }
 
-        .coming-soon h3 {
-            font-size: 5rem;
-            text-transform: uppercase;
-            letter-spacing: 8px;
-            color: rgba(177, 156, 217, 0.1);
-            position: relative;
-            margin-bottom: 30px;
+        .team-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), #5d0ebd);
+            border-radius: 2px;
         }
 
-        .coming-soon p {
-            font-size: 1.5rem;
-            max-width: 600px;
-            margin: 0 auto;
-            color: #b19cd9;
-            line-height: 1.8;
-        }
-
-        .mirror-grid {
+        .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 60px 0;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .mirror-card {
-            background: rgba(30, 30, 60, 0.4);
+        .team-member {
+            background: rgba(40, 20, 80, 0.3);
+            padding: 30px 20px;
             border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            border: 1px solid rgba(138, 43, 226, 0.2);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-member::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
             transition: transform 0.3s ease;
         }
 
-        .mirror-card:hover {
+        .team-member:hover::before {
+            transform: scaleX(1);
+        }
+
+        .team-member:hover {
             transform: translateY(-10px);
-            background: rgba(40, 40, 80, 0.5);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
         }
 
-        .mirror-card i {
+        .team-member h3 {
+            font-size: 2rem;
+            color: var(--accent-light);
+            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Rules Section */
+        .rules-section {
+            background: linear-gradient(to bottom, rgba(18, 8, 43, 0.9), rgba(10, 5, 25, 0.9));
+            padding: 80px 20px;
+            margin: 100px 0;
+            border-radius: 15px;
+            border: 1px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rules-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1531685250784-7569952593d2?q=80&w=1974');
+            background-size: cover;
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        .rules-section h2 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 3rem;
-            color: #8a2be2;
-            margin-bottom: 20px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
-        .mirror-card h4 {
-            font-size: 1.5rem;
+        .rules-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .rule {
+            background: rgba(30, 15, 60, 0.6);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            border-left: 5px solid var(--accent);
+            display: flex;
+            align-items: flex-start;
+            transition: transform 0.3s ease;
+        }
+
+        .rule:hover {
+            transform: translateX(10px);
+        }
+
+        .rule-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-right: 20px;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .rule-content h3 {
+            font-size: 1.8rem;
             margin-bottom: 15px;
-            color: #e6e6ff;
+            color: var(--text);
         }
 
-        .mirror-card p {
-            color: #b19cd9;
+        .rule-content p {
+            color: var(--accent-light);
+            font-size: 1.2rem;
             line-height: 1.6;
+        }
+
+        .warning-box {
+            background: rgba(178, 34, 34, 0.2);
+            border: 2px solid var(--warning);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .warning-box p {
+            font-size: 1.5rem;
+            color: var(--warning);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
         }
 
         footer {
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px 40px;
             margin-top: 80px;
-            border-top: 1px solid rgba(102, 51, 153, 0.3);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
         }
 
         footer p {
-            color: #9370db;
-            margin: 10px 0;
+            color: var(--accent-light);
+            margin: 15px 0;
             font-size: 1.1rem;
         }
 
         .footer-warning {
             font-weight: bold;
-            font-size: 1.3rem;
-            color: #ff6b6b;
-            margin-top: 20px;
-            text-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+            font-size: 1.5rem;
+            color: var(--warning);
+            margin: 25px 0;
+            text-shadow: 0 0 15px rgba(255, 107, 107, 0.4);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(138, 43, 226, 0.2);
+            color: var(--accent-light);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            color: var(--text);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: rgba(177, 156, 217, 0.7);
         }
 
         @media (max-width: 768px) {
@@ -336,39 +564,52 @@
             }
             
             .hero h2 {
-                font-size: 3rem;
+                font-size: 3.5rem;
             }
             
             .hero p {
-                font-size: 1.4rem;
-            }
-            
-            .coming-soon h3 {
-                font-size: 3rem;
+                font-size: 1.5rem;
             }
             
             nav ul {
                 gap: 15px;
             }
+            
+            .mirror-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 480px) {
             .hero h2 {
-                font-size: 2.2rem;
+                font-size: 2.8rem;
+                letter-spacing: 2px;
             }
             
             .hero p {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
             
-            .coming-soon h3 {
-                font-size: 2.2rem;
-                letter-spacing: 4px;
+            .warning {
+                font-size: 1.5rem;
+                padding: 10px 20px;
             }
             
-            .team-members {
-                flex-direction: column;
-                align-items: center;
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-section h2 {
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -377,15 +618,14 @@
     <div class="container">
         <header>
             <div class="logo">
-                <h1>MIRROR</h1>
-                <span>WEB.VERCEL.APP</span>
+                <h1>MIRROR MIRROR</h1>
             </div>
             <nav>
                 <ul>
-                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
-                    <li><a href="#"><i class="fas fa-video"></i> Video</a></li>
-                    <li><a href="#"><i class="fas fa-users"></i> Team</a></li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#video">Video</a></li>
+                    <li><a href="#team">Team</a></li>
                 </ul>
             </nav>
         </header>
@@ -399,99 +639,151 @@
             <p>Enter a world where every reflection tells a story and nothing is as it seems</p>
         </section>
 
-        <section class="video-section">
-            <video controls poster="https://cdn.ironman.my.id/i/xltg2m.jpg">
-                <source src="https://cdn.ironman.my.id/i/86jnep.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </section>
-
-        <section class="team-section">
-            <h3>THE CREATORS</h3>
-            <div class="team-members">
-                <div class="member">
-                    <h4>AAMIR</h4>
-                    <p>Creative Director</p>
-                </div>
-                <div class="member">
-                    <h4>RASAL</h4>
-                    <p>Lead Developer</p>
-                </div>
-                <div class="member">
-                    <h4>YADHU</h4>
-                    <p>Visual Designer</p>
-                </div>
-                <div class="member">
-                    <h4>SAFVAN</h4>
-                    <p>Sound Engineer</p>
-                </div>
-                <div class="member">
-                    <h4>JOYAL</h4>
-                    <p>Narrative Designer</p>
-                </div>
-                <div class="member">
-                    <h4>VISHU</h4>
-                    <p>Technical Artist</p>
-                </div>
-                <div class="member">
-                    <h4>SHAJHON</h4>
-                    <p>Project Manager</p>
-                </div>
-            </div>
-        </section>
-
-        <div class="divider"></div>
-
         <section class="mirror-grid">
             <div class="mirror-card">
                 <i class="fas fa-cogs"></i>
                 <h4>Advanced Technology</h4>
-                <p>Utilizing cutting-edge reflection and rendering technology to create immersive experiences</p>
+                <p>Utilizing cutting-edge reflection and rendering technology to create immersive experiences that blur the line between reality and illusion.</p>
             </div>
             <div class="mirror-card">
                 <i class="fas fa-theater-masks"></i>
                 <h4>Immersive Story</h4>
-                <p>A narrative that evolves based on your choices and reflections</p>
+                <p>A narrative that evolves based on your choices and reflections, where every decision creates a ripple across dimensions.</p>
             </div>
             <div class="mirror-card">
                 <i class="fas fa-vr-cardboard"></i>
                 <h4>Multi-Dimensional</h4>
-                <p>Experience reflections across multiple dimensions and realities</p>
+                <p>Experience reflections across multiple dimensions and realities, each with its own rules and consequences.</p>
             </div>
         </section>
 
-        <section class="coming-soon">
-            <h3>COMING SOON</h3>
-            <p>Prepare to question your reality as Mirror Mirror takes you on a journey through fractured dimensions and distorted reflections.</p>
+        <section id="video" class="video-section">
+            <h2 class="team-section">THE GAME TRAILER</h2>
+            <div class="video-container">
+                <video controls poster="https://cdn.ironman.my.id/i/xltg2m.jpg">
+                    <source src="https://cdn.ironman.my.id/i/86jnep.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+
+        <section id="team" class="team-section">
+            <h2>THE CREATORS</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <h3>AAMIR</h3>
+                </div>
+                <div class="team-member">
+                    <h3>RASAL</h3>
+                </div>
+                <div class="team-member">
+                    <h3>YADHU</h3>
+                </div>
+                <div class="team-member">
+                    <h3>SAFVAN</h3>
+                </div>
+                <div class="team-member">
+                    <h3>JOYAL</h3>
+                </div>
+                <div class="team-member">
+                    <h3>VISHWAJITH</h3>
+                </div>
+                <div class="team-member">
+                    <h3>SHAJHON</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="rules-section">
+            <h2>ABOUT THE GAME</h2>
+            <div class="rules-container">
+                <p style="text-align: center; font-size: 1.5rem; margin-bottom: 50px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    Mirror Mirror is not just a game - it's an experience that will challenge your perception of reality. 
+                    Play carefully, as the reflections hold more power than you realize. This is a true game of perception and consequence.
+                </p>
+                
+                <h2 style="margin-bottom: 40px; text-align: center;">THE RULES</h2>
+                
+                <div class="rule">
+                    <div class="rule-number">1</div>
+                    <div class="rule-content">
+                        <h3>Do Not Talk While Playing</h3>
+                        <p>Complete silence must be maintained during gameplay. Any vocalization may disrupt the delicate balance between dimensions.</p>
+                    </div>
+                </div>
+                
+                <div class="rule">
+                    <div class="rule-number">2</div>
+                    <div class="rule-content">
+                        <h3>Don't Move While Playing</h3>
+                        <p>Remain perfectly still once gameplay begins. Movement may attract unwanted attention from the other side.</p>
+                    </div>
+                </div>
+                
+                <div class="rule">
+                    <div class="rule-number">3</div>
+                    <div class="rule-content">
+                        <h3>Do Not Dare to Look Into the Mirror</h3>
+                        <p>Under no circumstances should you make direct eye contact with your reflection. What looks back may not be you.</p>
+                    </div>
+                </div>
+                
+                <div class="warning-box">
+                    <p>WARNING: FAILURE TO FOLLOW THESE RULES MAY HAVE UNPREDICTABLE CONSEQUENCES</p>
+                </div>
+            </div>
         </section>
     </div>
 
     <footer>
-        <p>© 2025 Mirror Mirror. All rights reserved.</p>
+        <p>Prepare to question your reality as Mirror Mirror takes you on a journey through fractured dimensions</p>
         <p class="footer-warning">Beware what you see</p>
         <p>Enter at your own risk - reflections may reveal more than you expect</p>
+        
+        <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-discord"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <p class="copyright">© 2025 Mirror Mirror. All rights reserved.</p>
     </footer>
 
     <script>
-        // Simple animation for the "COMING SOON" text
+        // Animation for mirror cards
         document.addEventListener('DOMContentLoaded', function() {
-            const comingSoon = document.querySelector('.coming-soon h3');
-            let hue = 0;
+            const cards = document.querySelectorAll('.mirror-card');
             
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-15px)';
+                    card.style.boxShadow = '0 20px 40px rgba(138, 43, 226, 0.4)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                    card.style.boxShadow = '0 15px 35px rgba(138, 43, 226, 0.3)';
+                });
+            });
+            
+            // Text animation for warning
+            const warning = document.querySelector('.warning');
             setInterval(() => {
-                hue = (hue + 1) % 360;
-                comingSoon.style.color = `hsla(${hue}, 100%, 50%, 0.1)`;
-            }, 50);
+                warning.style.textShadow = `0 0 15px rgba(255, ${Math.floor(Math.random() * 100) + 50}, ${Math.floor(Math.random() * 100) + 50}, 0.8)`;
+            }, 1000);
             
-            // Add hover effect to team members
-            const members = document.querySelectorAll('.member');
+            // Team member hover effect
+            const members = document.querySelectorAll('.team-member');
             members.forEach(member => {
                 member.addEventListener('mouseenter', () => {
-                    member.style.transform = 'translateY(-10px)';
+                    member.style.transform = 'translateY(-15px)';
+                    member.style.boxShadow = '0 15px 30px rgba(138, 43, 226, 0.5)';
                 });
                 
                 member.addEventListener('mouseleave', () => {
                     member.style.transform = 'translateY(0)';
+                    member.style.boxShadow = '0 10px 25px rgba(138, 43, 226, 0.4)';
                 });
             });
         });
