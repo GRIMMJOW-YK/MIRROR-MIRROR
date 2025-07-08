@@ -3,60 +3,359 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mirror mirror</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Mirror Mirror</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Play:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Play', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Video Intro Section */
+        #intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000 url('https://cdn.ironman.my.id/i/xltg2m.jpg') no-repeat center center;
+            background-size: cover;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.2s ease-in-out;
+        }
+        
+        #intro-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+        
+        #enter-button {
+            position: absolute;
+            bottom: 80px;
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            padding: 15px 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-family: 'Orbitron', sans-serif;
+            backdrop-filter: blur(5px);
+            animation: pulse 2s infinite;
+            opacity: 0.9;
+        }
+        
+        #enter-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.05);
+            border-color: #ff0055;
+            color: #ff0055;
+            box-shadow: 0 0 20px rgba(255, 0, 85, 0.5);
+        }
+        
+        #intro-title {
+            position: absolute;
+            top: 40%;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 0, 85, 0.7);
+            opacity: 0.95;
+            transform: translateY(-50%);
+        }
+        
+        #intro-title span {
+            display: block;
+            font-size: 2.5rem;
+            letter-spacing: 4px;
+            margin-top: 15px;
+            color: #ffcc00;
+            text-shadow: 0 0 8px rgba(255, 204, 0, 0.5);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+        
+        /* Main Content */
+        #content {
+            display: none;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: #ff0055;
+            text-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
+        }
+        
+        .section {
+            margin: 50px 0;
+            padding: 30px;
+            background: rgba(20, 20, 20, 0.7);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #ff0055, #ffcc00);
+        }
+        
+        .section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            color: #ffcc00;
+            text-align: center;
+        }
+        
+        .section p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .separator {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ff0055, #ffcc00, transparent);
+            margin: 40px auto;
+            width: 80%;
+        }
+        
+        .mirror-title {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin: 30px 0;
+            color: white;
+            text-shadow: 0 0 15px rgba(255, 0, 85, 0.7);
+            animation: glitch 1s infinite;
+        }
+        
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 red, -2px 0 cyan; }
+            25% { text-shadow: -3px 0 cyan, 3px 0 magenta; }
+            50% { text-shadow: 2px 0 green, -2px 0 yellow; }
+            75% { text-shadow: -3px 0 yellow, 3px 0 blue; }
+            100% { text-shadow: 2px 0 magenta, -2px 0 green; }
+        }
+        
+        .names {
+            text-align: center;
+            font-size: 1.3rem;
+            margin: 40px 0;
+            line-height: 2;
+            letter-spacing: 2px;
+        }
+        
+        .names strong {
+            color: #ffcc00;
+            font-weight: normal;
+            font-size: 1.4rem;
+        }
+        
+        .coming-soon {
+            text-align: center;
+            font-size: 1.8rem;
+            font-style: italic;
+            letter-spacing: 3px;
+            margin: 40px 0;
+            color: #ff0055;
+            text-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .mirror-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://cdn.ironman.my.id/i/xltg2m.jpg') no-repeat center center;
+            background-size: cover;
+            opacity: 0.03;
+            z-index: -1;
+        }
+        
+        @media (max-width: 768px) {
+            #intro-title {
+                font-size: 2.5rem;
+            }
+            
+            #intro-title span {
+                font-size: 1.8rem;
+            }
+            
+            .mirror-title {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div id="loading-screen">
-        <div class="loader"></div>
-    </div>
-    
-    <div id="video-container">
-        <video id="video-background" poster="https://cdn.ironman.my.id/i/xltg2m.jpg">
-            <source src="https://cdn.ironman.my.id/i/g8zux1.mp4" type="video/mp4">
+    <!-- Intro Section -->
+    <div id="intro">
+        <video id="intro-video" poster="https://cdn.ironman.my.id/i/xltg2m.jpg" muted>
+            <source src="https://cdn.ironman.my.id/i/86jnep.mp4" type="video/mp4">
         </video>
+        <div id="intro-title">
+            MIRROR MIRROR
+            <span>DON'T BREAK THE RULES</span>
+        </div>
+        <button id="enter-button">ENTER</button>
     </div>
     
-    <audio id="bgm" loop>
-        <source src="https://cdn.ironman.my.id/i/g8zux1.mp4" type="audio/mp4">
-    </audio>
-    
-    <div id="audio-control">🔊</div>
-    
-    <div class="content">
-        <h1 class="glitch-effect">mirror-web.vercel.app</h1>
+    <!-- Main Content -->
+    <div id="content">
+        <div class="mirror-effect"></div>
         
-        <h2>mirror mirror</h2>
-        <p>About</p>
+        <div class="header">
+            <h1>mirror-web.vercel.app</h1>
+        </div>
+        
+        <div class="section">
+            <h2>mirror mirror</h2>
+            <p>About</p>
+        </div>
         
         <div class="separator"></div>
         
-        <h2>mirror mirror</h2>
-        <p>DON'T BREAK THE RULES</p>
+        <div class="section">
+            <h2>mirror mirror</h2>
+            <p>DON'T BREAK THE RULES</p>
+        </div>
         
         <div class="separator"></div>
         
-        <h2>coming soon</h2>
-        
-        <div class="mirror-text">
-            MIRROR<br>
-            MIRROR
+        <div class="section">
+            <h2>coming soon</h2>
+            <div class="mirror-title">
+                MIRROR<br>
+                MIRROR
+            </div>
+            
+            <div class="names">
+                <strong>AAMIR | RASAL | __.yadhu.__ | SAFVAN | JOYAL</strong><br>
+                | VISHU | SHAJHON
+            </div>
+            
+            <p class="coming-soon">Coming soon...</p>
         </div>
-        
-        <div class="names">
-            <strong>AAMIR | RASAL | __.yadhu.__ | SAFVAN | JOYAL</strong><br>
-            | VISHU | SHAJHON
-        </div>
-        
-        <p class="coming-soon">Coming soon...</p>
-        
-        <button id="play-button">Click to Play</button>
         
         <div class="footer">
             © 2025 Mirror Mirror. All rights reserved. Beware what you see.
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const intro = document.getElementById('intro');
+            const content = document.getElementById('content');
+            const enterButton = document.getElementById('enter-button');
+            const introVideo = document.getElementById('intro-video');
+            
+            // Play intro video muted
+            introVideo.play().catch(e => {
+                console.log("Autoplay prevented, showing poster instead");
+            });
+            
+            // Enter button click handler
+            enterButton.addEventListener('click', function() {
+                // Fade out intro
+                intro.style.opacity = '0';
+                
+                // After fade out, hide intro and show content
+                setTimeout(function() {
+                    intro.style.display = 'none';
+                    content.style.display = 'block';
+                    
+                    // Fade in content
+                    setTimeout(function() {
+                        content.style.opacity = '1';
+                    }, 100);
+                }, 1200);
+            });
+            
+            // Allow clicking anywhere on the intro to enter
+            intro.addEventListener('click', function(e) {
+                if (e.target === intro) {
+                    enterButton.click();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
