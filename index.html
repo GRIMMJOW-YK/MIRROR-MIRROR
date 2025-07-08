@@ -2,38 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mirror Mirror</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Creepster&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mirror Horror</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <div class="video-container" id="intro">
-    <video id="introVideo" autoplay muted playsinline>
-      <source src="https://cdn.ironman.my.id/i/86jnep.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <button id="startBtn">Click to Play</button>
+
+  <!-- Intro Video -->
+  <video id="introVideo" autoplay muted playsinline class="fullscreen-video">
+    <source src="https://cdn.ironman.my.id/i/86jnep.mp4" type="video/mp4">
+  </video>
+
+  <!-- Main Content (hidden at first) -->
+  <div id="mainContent" class="hidden">
+    <!-- Background Music -->
+    <audio autoplay loop>
+      <source src="https://cdn.ironman.my.id/i/g8zux1.mp4" type="audio/mp4">
+    </audio>
+
+    <!-- Mirror Video -->
+    <div class="mirror-container">
+      <video id="mirrorVideo" poster="https://cdn.ironman.my.id/i/xltg2m.jpg" controls playsinline>
+        <source src="https://cdn.ironman.my.id/i/86jnep.mp4" type="video/mp4">
+      </video>
+      <div class="click-to-play">Click to Play</div>
+    </div>
+
+    <!-- Coming Soon -->
+    <h1 class="coming-soon">Coming Soon</h1>
+
+    <!-- About -->
+    <p class="about">__.yadhu.__</p>
   </div>
 
-  <div class="main-content" id="mainContent" style="display:none;">
-    <header>
-      <h1 class="logo">Mirror <span>Mirror</span></h1>
-    </header>
+  <script>
+    // Show main content after intro video ends
+    const intro = document.getElementById("introVideo");
+    const main = document.getElementById("mainContent");
 
-    <section class="poster-section">
-      <img src="https://cdn.ironman.my.id/i/xltg2m.jpg" alt="Mirror Mirror Poster" class="poster">
-    </section>
-
-    <footer>
-      <p>© 2025 Mirror Mirror. All rights reserved. Beware what you see.</p>
-      <p>Instagram: <a href="https://instagram.com/__.yadhu__">@__.yadhu__</a></p>
-      <p>Report bugs or request content removal on Instagram: <a href="https://instagram.com/__.yadhu__">@__.yadhu__</a></p>
-      <p>Created by <strong>__. yadhu.__</strong></p>
-    </footer>
-  </div>
-
-  <audio id="bgm" src="bgm.mp3" loop></audio>
-  <script src="script.js"></script>
+    intro.onended = () => {
+      intro.style.display = "none";
+      main.classList.remove("hidden");
+    };
+  </script>
 </body>
 </html>
