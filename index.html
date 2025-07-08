@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIRROR MIRROR - Horror Experience</title>
+    <title>MIRROR MIRROR - Enhanced Horror Experience</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -87,6 +87,12 @@
                 repeating-linear-gradient(135deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 1px, transparent 1px, transparent 21px);
             pointer-events: none;
             z-index: -1;
+            animation: bgMove 60s infinite alternate ease-in-out;
+        }
+
+        @keyframes bgMove {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
         }
 
         .container {
@@ -518,6 +524,13 @@
             transform-style: preserve-3d;
             transform: perspective(1000px) rotateX(0deg);
             transition: transform 0.5s;
+            animation: pulse-border 3s infinite;
+        }
+
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(138, 43, 226, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(138, 43, 226, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(138, 43, 226, 0); }
         }
 
         .rules-section:hover {
@@ -657,6 +670,13 @@
             overflow: hidden;
             transform-style: preserve-3d;
             transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+            animation: breathing 3s infinite ease-in-out;
+        }
+
+        @keyframes breathing {
+            0% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1); }
+            50% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.02); }
+            100% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1); }
         }
 
         .mirror-reflection {
@@ -768,6 +788,39 @@
             display: inline-block;
         }
 
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch-text::before {
+            color: var(--glitch-color-1);
+            animation: glitch-anim 2s infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+            transform: translate(-2px, 0);
+        }
+
+        .glitch-text::after {
+            color: var(--glitch-color-2);
+            animation: glitch-anim 1.5s infinite;
+            clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+            transform: translate(2px, 0);
+        }
+
+        @keyframes glitch-anim {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
+            100% { transform: translate(0); }
+        }
+
         /* Ghost Effect */
         .ghost {
             position: fixed;
@@ -791,17 +844,53 @@
         }
 
         /* Eyes that follow cursor */
-        .eyes {
+        .eyes-container {
             position: fixed;
             width: 100px;
-            height: 100px;
-            background: radial-gradient(circle at 30px 40px, #000 15px, transparent 16px),
-                        radial-gradient(circle at 70px 40px, #000 15px, transparent 16px);
-            border-radius: 50%;
+            height: 50px;
             z-index: 5;
             pointer-events: none;
             opacity: 0.7;
             transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .eye {
+            width: 40px;
+            height: 40px;
+            background: #000;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .eye::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #fff;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .eyelid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            top: -100%;
+            left: 0;
+            border-radius: 50%;
+            animation: blink 5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 95%, 100% { top: -100%; }
+            96%, 98% { top: 0; }
         }
 
         /* Particles */
@@ -853,6 +942,25 @@
         .audio-control:hover {
             background: var(--accent);
             transform: scale(1.1);
+        }
+
+        /* Distortion Effect */
+        .distortion {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 10%, black 70%);
+            pointer-events: none;
+            opacity: 0.3;
+            animation: distort 8s infinite alternate;
+        }
+
+        @keyframes distort {
+            0% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(1.2); opacity: 0.4; }
+            100% { transform: scale(1); opacity: 0.1; }
         }
 
         /* Responsive Design */
@@ -925,7 +1033,14 @@
 <body>
     <div class="flicker"></div>
     <div class="ghost"></div>
-    <div class="eyes"></div>
+    <div class="eyes-container" id="eyesContainer">
+        <div class="eye">
+            <div class="eyelid"></div>
+        </div>
+        <div class="eye">
+            <div class="eyelid"></div>
+        </div>
+    </div>
     <div class="particles"></div>
     
     <div class="audio-control" id="audioControl">
@@ -935,7 +1050,7 @@
     <div class="container">
         <header>
             <div class="logo">
-                <h1>MIRROR MIRROR</h1>
+                <h1 class="glitch-text" data-text="MIRROR MIRROR">MIRROR MIRROR</h1>
             </div>
             <nav>
                 <ul>
@@ -948,7 +1063,7 @@
         </header>
 
         <section class="hero">
-            <h2>MIRROR MIRROR</h2>
+            <h2 class="glitch-text" data-text="MIRROR MIRROR">MIRROR MIRROR</h2>
             <p>A journey through reflections where reality bends and truth becomes elusive</p>
             <div class="warning" id="warningBtn">
                 DON'T BREAK THE RULES
@@ -975,7 +1090,7 @@
         </section>
 
         <section id="video" class="video-section">
-            <h2 class="team-section">THE GAME TRAILER</h2>
+            <h2 class="team-section">THE MOTION POSTER</h2>
             <div class="video-container">
                 <video controls poster="https://cdn.ironman.my.id/i/xltg2m.jpg">
                     <source src="https://cdn.ironman.my.id/i/86jnep.mp4" type="video/mp4">
@@ -1055,6 +1170,7 @@
     <div class="interactive-mirror" id="interactiveMirror">
         <div class="close-mirror" id="closeMirror">×</div>
         <div class="mirror-frame">
+            <div class="distortion"></div>
             <div class="mirror-reflection" id="mirrorReflection">
                 <h3 class="glitch-text" data-text="YOU BROKE THE RULES">YOU BROKE THE RULES</h3>
                 <p>What you see is not a reflection...</p>
@@ -1075,7 +1191,7 @@
             <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
         
-        <p class="copyright">© 2025 Mirror Mirror. All rights reserved.</p>
+        <p class="copyright">© 2025 Mirror Mirror. All rights reserved.created by @__yadhuu.__</p>
     </footer>
 
     <audio id="bgAudio" loop>
@@ -1089,6 +1205,14 @@
     <audio id="jumpscareAudio">
         <source src="https://assets.mixkit.co/sfx/preview/mixkit-woman-scream-1235.mp3" type="audio/mpeg">
     </audio>
+    
+    <audio id="whisperAudio">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-creepy-whisper-568.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="heartbeatAudio" loop>
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-single-heartbeat-766.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -1101,12 +1225,18 @@
             const bgAudio = document.getElementById('bgAudio');
             const mirrorAudio = document.getElementById('mirrorAudio');
             const jumpscareAudio = document.getElementById('jumpscareAudio');
-            const eyes = document.querySelector('.eyes');
+            const whisperAudio = document.getElementById('whisperAudio');
+            const heartbeatAudio = document.getElementById('heartbeatAudio');
+            const eyesContainer = document.getElementById('eyesContainer');
             const ghost = document.querySelector('.ghost');
             const flicker = document.querySelector('.flicker');
             
             // Set initial audio state
             bgAudio.volume = 0.3;
+            mirrorAudio.volume = 0.6;
+            jumpscareAudio.volume = 0.7;
+            whisperAudio.volume = 0.4;
+            heartbeatAudio.volume = 0.3;
             bgAudio.muted = true;
             
             // Show interactive mirror
@@ -1118,12 +1248,16 @@
                 mirrorAudio.currentTime = 0;
                 mirrorAudio.play();
                 
+                // Start heartbeat
+                heartbeatAudio.currentTime = 0;
+                heartbeatAudio.play();
+                
                 // Show reflection after a delay
                 setTimeout(() => {
                     mirrorReflection.style.opacity = '1';
                     
                     // Random chance for jumpscare
-                    if (Math.random() > 0.5) {
+                    if (Math.random() > 0.3) {
                         setTimeout(() => {
                             jumpscareAudio.currentTime = 0;
                             jumpscareAudio.play();
@@ -1141,6 +1275,7 @@
             // Hide interactive mirror
             function hideMirror() {
                 mirrorReflection.style.opacity = '0';
+                heartbeatAudio.pause();
                 setTimeout(() => {
                     interactiveMirror.style.opacity = '0';
                     interactiveMirror.style.pointerEvents = 'none';
@@ -1153,6 +1288,15 @@
                 audioControl.innerHTML = bgAudio.muted ? 
                     '<i class="fas fa-volume-mute"></i>' : 
                     '<i class="fas fa-volume-up"></i>';
+            }
+            
+            // Play whisper at random intervals
+            function playWhisper() {
+                if (!bgAudio.muted && Math.random() > 0.8) {
+                    whisperAudio.currentTime = 0;
+                    whisperAudio.play();
+                }
+                setTimeout(playWhisper, Math.random() * 30000 + 10000);
             }
             
             // Event listeners
@@ -1170,8 +1314,8 @@
             
             // Eyes follow cursor
             document.addEventListener('mousemove', function(e) {
-                eyes.style.left = e.pageX + 'px';
-                eyes.style.top = e.pageY + 'px';
+                eyesContainer.style.left = e.pageX + 'px';
+                eyesContainer.style.top = e.pageY + 'px';
             });
             
             // Create particles
@@ -1201,6 +1345,7 @@
             
             // Initialize
             createParticles();
+            playWhisper();
             
             // Random ghost appearances
             setInterval(() => {
