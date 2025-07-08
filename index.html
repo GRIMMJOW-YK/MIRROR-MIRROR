@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIRROR MIRROR</title>
+    <title>MIRROR MIRROR - Horror Experience</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -21,6 +21,8 @@
             --text: #e6e6ff;
             --warning: #ff6b6b;
             --dark-purple: #12082b;
+            --glitch-color-1: #ff00ff;
+            --glitch-color-2: #00ffff;
         }
 
         body {
@@ -78,6 +80,7 @@
         .logo {
             display: flex;
             align-items: center;
+            position: relative;
         }
 
         .logo h1 {
@@ -90,6 +93,78 @@
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 20px rgba(177, 156, 217, 0.5);
             letter-spacing: 1px;
+            position: relative;
+        }
+
+        .logo h1::before,
+        .logo h1::after {
+            content: "MIRROR MIRROR";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .logo h1::before {
+            color: var(--glitch-color-1);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        .logo h1::after {
+            color: var(--glitch-color-2);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(42px, 9999px, 44px, 0); }
+            5% { clip: rect(12px, 9999px, 59px, 0); }
+            10% { clip: rect(48px, 9999px, 29px, 0); }
+            15% { clip: rect(42px, 9999px, 73px, 0); }
+            20% { clip: rect(63px, 9999px, 27px, 0); }
+            25% { clip: rect(34px, 9999px, 55px, 0); }
+            30% { clip: rect(86px, 9999px, 73px, 0); }
+            35% { clip: rect(20px, 9999px, 20px, 0); }
+            40% { clip: rect(26px, 9999px, 60px, 0); }
+            45% { clip: rect(25px, 9999px, 66px, 0); }
+            50% { clip: rect(57px, 9999px, 98px, 0); }
+            55% { clip: rect(5px, 9999px, 46px, 0); }
+            60% { clip: rect(82px, 9999px, 31px, 0); }
+            65% { clip: rect(54px, 9999px, 27px, 0); }
+            70% { clip: rect(28px, 9999px, 99px, 0); }
+            75% { clip: rect(45px, 9999px, 69px, 0); }
+            80% { clip: rect(23px, 9999px, 85px, 0); }
+            85% { clip: rect(54px, 9999px, 84px, 0); }
+            90% { clip: rect(45px, 9999px, 47px, 0); }
+            95% { clip: rect(37px, 9999px, 20px, 0); }
+            100% { clip: rect(73px, 9999px, 99px, 0); }
+        }
+
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            5% { clip: rect(52px, 9999px, 74px, 0); }
+            10% { clip: rect(79px, 9999px, 85px, 0); }
+            15% { clip: rect(75px, 9999px, 5px, 0); }
+            20% { clip: rect(67px, 9999px, 61px, 0); }
+            25% { clip: rect(14px, 9999px, 79px, 0); }
+            30% { clip: rect(1px, 9999px, 66px, 0); }
+            35% { clip: rect(86px, 9999px, 30px, 0); }
+            40% { clip: rect(23px, 9999px, 98px, 0); }
+            45% { clip: rect(85px, 9999px, 72px, 0); }
+            50% { clip: rect(71px, 9999px, 75px, 0); }
+            55% { clip: rect(2px, 9999px, 48px, 0); }
+            60% { clip: rect(30px, 9999px, 16px, 0); }
+            65% { clip: rect(59px, 9999px, 50px, 0); }
+            70% { clip: rect(41px, 9999px, 62px, 0); }
+            75% { clip: rect(2px, 9999px, 82px, 0); }
+            80% { clip: rect(47px, 9999px, 73px, 0); }
+            85% { clip: rect(3px, 9999px, 27px, 0); }
+            90% { clip: rect(26px, 9999px, 55px, 0); }
+            95% { clip: rect(42px, 9999px, 97px, 0); }
+            100% { clip: rect(38px, 9999px, 49px, 0); }
         }
 
         nav ul {
@@ -136,6 +211,7 @@
             max-width: 900px;
             margin-left: auto;
             margin-right: auto;
+            position: relative;
         }
 
         .hero h2 {
@@ -152,6 +228,19 @@
             text-shadow: 0 0 25px rgba(177, 156, 217, 0.6);
             position: relative;
             line-height: 1.1;
+            animation: flicker 3s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                text-shadow: 0 0 25px rgba(177, 156, 217, 0.6);
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                text-shadow: 0 0 35px rgba(177, 156, 217, 0.8),
+                             0 0 60px rgba(177, 156, 217, 0.4);
+                opacity: 0.9;
+            }
         }
 
         .hero h2::after {
@@ -192,6 +281,15 @@
             letter-spacing: 2px;
             font-family: 'Orbitron', sans-serif;
             text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .warning:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
         }
 
         @keyframes pulse {
@@ -398,6 +496,23 @@
             color: var(--accent-light);
             margin-bottom: 10px;
             font-family: 'Orbitron', sans-serif;
+            position: relative;
+        }
+
+        .team-member h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .team-member:hover h3::after {
+            width: 80%;
         }
 
         /* Rules Section */
@@ -448,10 +563,23 @@
             display: flex;
             align-items: flex-start;
             transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .rule:hover {
             transform: translateX(10px);
+        }
+
+        .rule::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--accent);
+            z-index: 1;
         }
 
         .rule-number {
@@ -461,6 +589,7 @@
             margin-right: 20px;
             min-width: 60px;
             text-align: center;
+            z-index: 2;
         }
 
         .rule-content h3 {
@@ -482,6 +611,16 @@
             border-radius: 10px;
             margin-top: 50px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: shake 0.5s infinite alternate;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+            100% { transform: translateX(0); }
         }
 
         .warning-box p {
@@ -489,6 +628,64 @@
             color: var(--warning);
             font-family: 'Orbitron', sans-serif;
             letter-spacing: 1px;
+        }
+
+        /* Interactive Mirror */
+        .interactive-mirror {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .mirror-frame {
+            position: relative;
+            width: 80%;
+            max-width: 700px;
+            height: 70vh;
+            border: 15px solid #2a0b4e;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(138, 43, 226, 0.8);
+            background: url('https://images.unsplash.com/photo-1531685250784-7569952593d2?q=80&w=1974') center/cover;
+            overflow: hidden;
+        }
+
+        .mirror-reflection {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-family: 'Orbitron', sans-serif;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .close-mirror {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10;
         }
 
         footer {
@@ -523,6 +720,13 @@
             text-shadow: 0 0 15px rgba(255, 107, 107, 0.4);
             font-family: 'Orbitron', sans-serif;
             letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .footer-warning:hover {
+            text-shadow: 0 0 25px rgba(255, 107, 107, 0.8);
+            transform: scale(1.05);
         }
 
         .social-links {
@@ -549,6 +753,7 @@
             background: var(--accent);
             color: var(--text);
             transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.8);
         }
 
         .copyright {
@@ -557,6 +762,38 @@
             color: rgba(177, 156, 217, 0.7);
         }
 
+        /* Glitch Effects */
+        .glitch-text {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+        }
+
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -1px 0 var(--glitch-color-1);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -1px 0 var(--glitch-color-2);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -581,6 +818,11 @@
 
             .team-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-section h2,
+            .rules-section h2 {
+                font-size: 2.5rem;
             }
         }
 
@@ -611,6 +853,10 @@
             .team-section h2 {
                 font-size: 2.5rem;
             }
+            
+            .logo h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -633,7 +879,7 @@
         <section class="hero">
             <h2>MIRROR MIRROR</h2>
             <p>A journey through reflections where reality bends and truth becomes elusive</p>
-            <div class="warning">
+            <div class="warning" id="warningBtn">
                 DON'T BREAK THE RULES
             </div>
             <p>Enter a world where every reflection tells a story and nothing is as it seems</p>
@@ -658,7 +904,7 @@
         </section>
 
         <section id="video" class="video-section">
-            <h2 class="team-section">THE MOTION POSTER</h2>
+            <h2 class="team-section">THE GAME TRAILER</h2>
             <div class="video-container">
                 <video controls poster="https://cdn.ironman.my.id/i/xltg2m.jpg">
                     <source src="https://cdn.ironman.my.id/i/86jnep.mp4" type="video/mp4">
@@ -735,9 +981,20 @@
         </section>
     </div>
 
+    <div class="interactive-mirror" id="interactiveMirror">
+        <div class="close-mirror" id="closeMirror">×</div>
+        <div class="mirror-frame">
+            <div class="mirror-reflection" id="mirrorReflection">
+                <h3 class="glitch-text" data-text="YOU BROKE THE RULES">YOU BROKE THE RULES</h3>
+                <p>What you see is not a reflection...</p>
+                <p>It's watching you.</p>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <p>Prepare to question your reality as Mirror Mirror takes you on a journey through fractured dimensions</p>
-        <p class="footer-warning">Beware what you see</p>
+        <p class="footer-warning" id="footerWarning">Beware what you see</p>
         <p>Enter at your own risk - reflections may reveal more than you expect</p>
         
         <div class="social-links">
@@ -747,14 +1004,51 @@
             <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
         
-        <p class="copyright">© 2025 Mirror Mirror. All rights reserved.CREATED BY @.__yadhuu.__</p>
+        <p class="copyright">© 2025 Mirror Mirror. All rights reserved.</p>
     </footer>
 
     <script>
-        // Animation for mirror cards
         document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.mirror-card');
+            const warningBtn = document.getElementById('warningBtn');
+            const footerWarning = document.getElementById('footerWarning');
+            const interactiveMirror = document.getElementById('interactiveMirror');
+            const closeMirror = document.getElementById('closeMirror');
+            const mirrorReflection = document.getElementById('mirrorReflection');
             
+            // Show interactive mirror
+            function showMirror() {
+                interactiveMirror.style.opacity = '1';
+                interactiveMirror.style.pointerEvents = 'all';
+                
+                // Show reflection after a delay
+                setTimeout(() => {
+                    mirrorReflection.style.opacity = '1';
+                }, 1000);
+            }
+            
+            // Hide interactive mirror
+            function hideMirror() {
+                mirrorReflection.style.opacity = '0';
+                setTimeout(() => {
+                    interactiveMirror.style.opacity = '0';
+                    interactiveMirror.style.pointerEvents = 'none';
+                }, 500);
+            }
+            
+            // Event listeners
+            warningBtn.addEventListener('click', showMirror);
+            footerWarning.addEventListener('click', showMirror);
+            closeMirror.addEventListener('click', hideMirror);
+            
+            // Click anywhere on mirror to close
+            interactiveMirror.addEventListener('click', function(e) {
+                if (e.target === interactiveMirror) {
+                    hideMirror();
+                }
+            });
+            
+            // Mirror card animations
+            const cards = document.querySelectorAll('.mirror-card');
             cards.forEach(card => {
                 card.addEventListener('mouseenter', () => {
                     card.style.transform = 'translateY(-15px)';
@@ -786,6 +1080,19 @@
                     member.style.boxShadow = '0 10px 25px rgba(138, 43, 226, 0.4)';
                 });
             });
+            
+            // Random glitch effect on headings
+            setInterval(() => {
+                const headings = document.querySelectorAll('h1, h2, h3');
+                headings.forEach(heading => {
+                    if (Math.random() > 0.8) {
+                        heading.classList.add('glitch-text');
+                        setTimeout(() => {
+                            heading.classList.remove('glitch-text');
+                        }, 500);
+                    }
+                });
+            }, 3000);
         });
     </script>
 </body>
