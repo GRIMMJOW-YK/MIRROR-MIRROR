@@ -4,34 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mirror Mirror</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=MedievalSharp&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Creepster&display=swap" rel="stylesheet">
 </head>
 <body>
-
   <div class="video-container" id="intro">
-    <video autoplay muted playsinline id="introVideo">
+    <video id="introVideo" autoplay muted playsinline>
       <source src="https://cdn.ironman.my.id/i/86jnep.mp4" type="video/mp4">
+      Your browser does not support the video tag.
     </video>
-    <div class="click-to-play" onclick="showPoster()">Click to Play</div>
+    <button id="startBtn">Click to Play</button>
   </div>
 
-  <div class="main-content hidden" id="main">
+  <div class="main-content" id="mainContent" style="display:none;">
     <header>
       <h1 class="logo">Mirror <span>Mirror</span></h1>
     </header>
 
-    <section class="poster">
-      <img src="https://cdn.ironman.my.id/i/xltg2m.jpg" alt="Mirror Mirror Poster" />
+    <section class="poster-section">
+      <img src="https://cdn.ironman.my.id/i/xltg2m.jpg" alt="Mirror Mirror Poster" class="poster">
     </section>
 
     <footer>
       <p>© 2025 Mirror Mirror. All rights reserved. Beware what you see.</p>
-      <p>Instagram: <a href="https://instagram.com/__.yadhu__" target="_blank">@__.yadhu__</a></p>
-      <p>Report bugs or remove content: <a href="https://instagram.com/__.yadhu.__" target="_blank">@__.yadhu.__</a></p>
+      <p>Instagram: <a href="https://instagram.com/__.yadhu__">@__.yadhu__</a></p>
+      <p>Report bugs or request content removal on Instagram: <a href="https://instagram.com/__.yadhu__">@__.yadhu__</a></p>
+      <p>Created by <strong>__. yadhu.__</strong></p>
     </footer>
   </div>
 
+  <audio id="bgm" src="bgm.mp3" loop></audio>
   <script src="script.js"></script>
 </body>
 </html>
