@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIRROR MIRROR</title>
+    <title>Mirror Mirror - Motion Poster</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Special+Elite&family=Creepster&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,54 +13,36 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #0a0a1a;
-            --secondary: #1a1a2e;
-            --accent: #8a2be2;
-            --accent-light: #b19cd9;
-            --text: #e6e6ff;
-            --warning: #ff6b6b;
-            --dark-purple: #12082b;
-        }
-
         body {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--text);
+            background: #000;
+            color: #e6e6ff;
             min-height: 100vh;
             overflow-x: hidden;
-            font-family: 'Exo 2', sans-serif;
+            font-family: 'Special Elite', cursive;
             position: relative;
             line-height: 1.6;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(70, 70, 180, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(120, 0, 200, 0.1) 0%, transparent 40%),
-                repeating-linear-gradient(45deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 1px, transparent 1px, transparent 21px),
-                repeating-linear-gradient(135deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 1px, transparent 1px, transparent 21px);
-            pointer-events: none;
-            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(40, 0, 80, 0.3) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(60, 0, 120, 0.3) 0%, transparent 20%),
+                linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+                url('https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
         }
 
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            margin-bottom: 20px;
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
             position: relative;
         }
 
@@ -72,300 +54,172 @@
             transform: translateX(-50%);
             width: 80%;
             height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            background: linear-gradient(90deg, transparent, #8a2be2, transparent);
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 900;
-            background: linear-gradient(90deg, var(--accent-light), #e6e6ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(177, 156, 217, 0.5);
-            letter-spacing: 1px;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        nav a {
-            color: var(--accent-light);
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
+        .title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 5rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 5px;
+            color: #fff;
+            text-shadow: 
+                0 0 10px #8a2be2,
+                0 0 20px #8a2be2,
+                0 0 30px #8a2be2;
+            margin-bottom: 20px;
+            animation: flicker 3s infinite alternate;
         }
 
-        nav a:hover {
-            color: var(--text);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 60px 20px;
-            margin: 40px 0;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 4.8rem;
-            font-weight: 900;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            background: linear-gradient(90deg, #e6e6ff, var(--accent-light));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 25px rgba(177, 156, 217, 0.6);
-            position: relative;
-            line-height: 1.1;
-        }
-
-        .hero h2::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 250px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), #5d0ebd);
-            border-radius: 2px;
-        }
-
-        .hero p {
+        .subtitle {
             font-size: 1.8rem;
-            margin: 40px 0;
-            color: #d8bfd8;
+            color: #b19cd9;
+            max-width: 700px;
+            margin: 0 auto 40px;
             line-height: 1.6;
+            text-shadow: 0 0 5px rgba(177, 156, 217, 0.5);
         }
 
-        .highlight {
-            color: var(--accent-light);
-            font-weight: bold;
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #8a2be2, #ff00ff, #8a2be2, transparent);
+            margin: 40px auto;
+            width: 70%;
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
         }
 
-        .warning {
-            display: inline-block;
-            background: rgba(178, 34, 34, 0.2);
-            color: var(--warning);
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-weight: bold;
-            margin: 30px 0;
-            border: 1px solid rgba(255, 107, 107, 0.3);
-            animation: pulse 2s infinite;
-            font-size: 1.8rem;
-            letter-spacing: 2px;
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-        }
-
-        @keyframes pulse {
-            0% { 
-                box-shadow: 0 0 0 0 rgba(178, 34, 34, 0.4);
-                transform: scale(1);
-            }
-            50% { 
-                transform: scale(1.05);
-            }
-            70% { 
-                box-shadow: 0 0 0 15px rgba(178, 34, 34, 0);
-            }
-            100% { 
-                box-shadow: 0 0 0 0 rgba(178, 34, 34, 0);
-                transform: scale(1);
-            }
-        }
-
-        .mirror-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 80px 0;
-        }
-
-        .mirror-card {
-            background: rgba(25, 25, 50, 0.5);
-            border-radius: 15px;
-            padding: 40px 30px;
+        .section-title {
+            font-family: 'Creepster', cursive;
+            font-size: 3.5rem;
             text-align: center;
-            border: 1px solid rgba(138, 43, 226, 0.2);
-            transition: all 0.4s ease;
-            backdrop-filter: blur(5px);
+            margin: 60px 0 40px;
+            color: #ff00ff;
+            text-shadow: 
+                0 0 10px #ff00ff,
+                0 0 20px #ff00ff,
+                0 0 30px #ff00ff;
+            letter-spacing: 3px;
+            animation: glow-pulse 2s infinite alternate;
+        }
+
+        .poster-container {
             position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 15px;
             overflow: hidden;
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            box-shadow: 
+                0 0 30px rgba(138, 43, 226, 0.7),
+                0 0 60px rgba(255, 0, 255, 0.5);
+            border: 3px solid #8a2be2;
+            transform: perspective(1000px) rotateX(5deg);
+            transition: transform 0.5s;
         }
 
-        .mirror-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(138, 43, 226, 0.3);
-            border-color: rgba(138, 43, 226, 0.5);
+        .poster-container:hover {
+            transform: perspective(1000px) rotateX(0deg);
         }
 
-        .mirror-card::before {
-            content: '';
+        .poster-image {
+            width: 100%;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .poster-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            background: linear-gradient(45deg, rgba(138, 43, 226, 0.1), rgba(255, 0, 255, 0.1));
+            z-index: 2;
+            pointer-events: none;
         }
 
-        .mirror-card:hover::before {
-            opacity: 1;
-        }
-
-        .mirror-card i {
-            font-size: 3.5rem;
-            color: var(--accent);
-            margin-bottom: 25px;
-            transition: transform 0.4s ease;
-        }
-
-        .mirror-card:hover i {
-            transform: scale(1.2) rotate(5deg);
-        }
-
-        .mirror-card h4 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--text);
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
-        }
-
-        .mirror-card p {
-            color: var(--accent-light);
-            line-height: 1.8;
-            font-size: 1.1rem;
-        }
-
-        /* Video Section */
-        .video-section {
-            margin: 100px 0;
-            text-align: center;
-        }
-
-        .video-container {
-            max-width: 900px;
-            margin: 0 auto;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
-            border: 2px solid var(--accent);
-            position: relative;
-        }
-
-        .video-container::before {
-            content: '';
+        .poster-title {
             position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
-            z-index: -1;
-            filter: blur(20px);
-            opacity: 0.7;
-            animation: gradient-border 4s linear infinite;
-            background-size: 400% 400%;
-        }
-
-        @keyframes gradient-border {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        video {
+            top: 20px;
+            left: 0;
             width: 100%;
-            display: block;
-            outline: none;
+            text-align: center;
+            font-family: 'Creepster', cursive;
+            font-size: 4rem;
+            color: #fff;
+            text-shadow: 
+                0 0 10px #ff00ff,
+                0 0 20px #ff00ff;
+            z-index: 3;
+            animation: float 4s infinite ease-in-out;
+        }
+
+        .poster-details {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            z-index: 3;
+        }
+
+        .mirror-prof {
+            font-size: 2.2rem;
+            color: #fff;
+            text-shadow: 0 0 10px #8a2be2;
+            margin-bottom: 15px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .timer {
+            font-size: 1.8rem;
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff;
+            font-family: 'Special Elite', cursive;
+        }
+
+        .credit {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.5rem;
+            color: #b19cd9;
+            text-shadow: 0 0 5px rgba(177, 156, 217, 0.5);
+        }
+
+        .credit strong {
+            color: #ff00ff;
+            font-weight: normal;
+            text-shadow: 0 0 10px #ff00ff;
         }
 
         /* Team Section */
         .team-section {
-            margin: 100px 0;
-            text-align: center;
-        }
-
-        .team-section h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
-            margin-bottom: 60px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--text);
+            background: rgba(10, 5, 25, 0.7);
+            padding: 60px 30px;
+            border-radius: 15px;
+            margin: 60px 0;
+            border: 1px solid #8a2be2;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
             position: relative;
-            display: inline-block;
-        }
-
-        .team-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), #5d0ebd);
-            border-radius: 2px;
+            overflow: hidden;
         }
 
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            max-width: 900px;
+            gap: 20px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .team-member {
             background: rgba(40, 20, 80, 0.3);
-            padding: 30px 20px;
-            border-radius: 15px;
+            padding: 25px 15px;
+            border-radius: 10px;
             border: 1px solid rgba(138, 43, 226, 0.3);
+            text-align: center;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -391,22 +245,24 @@
         .team-member:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
+            background: rgba(60, 30, 120, 0.4);
         }
 
         .team-member h3 {
-            font-size: 2rem;
-            color: var(--accent-light);
+            font-size: 1.8rem;
+            color: #e6e6ff;
             margin-bottom: 10px;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Special Elite', cursive;
+            letter-spacing: 1px;
         }
 
         /* Rules Section */
         .rules-section {
             background: linear-gradient(to bottom, rgba(18, 8, 43, 0.9), rgba(10, 5, 25, 0.9));
-            padding: 80px 20px;
-            margin: 100px 0;
+            padding: 60px 30px;
             border-radius: 15px;
-            border: 1px solid var(--accent);
+            margin: 60px 0;
+            border: 1px solid #ff0000;
             position: relative;
             overflow: hidden;
         }
@@ -424,27 +280,17 @@
             z-index: -1;
         }
 
-        .rules-section h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 60px;
-            color: var(--text);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
         .rules-container {
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
         }
 
         .rule {
             background: rgba(30, 15, 60, 0.6);
-            padding: 30px;
-            margin-bottom: 30px;
+            padding: 25px;
+            margin-bottom: 25px;
             border-radius: 10px;
-            border-left: 5px solid var(--accent);
+            border-left: 5px solid #ff0000;
             display: flex;
             align-items: flex-start;
             transition: transform 0.3s ease;
@@ -452,12 +298,13 @@
 
         .rule:hover {
             transform: translateX(10px);
+            background: rgba(50, 15, 70, 0.7);
         }
 
         .rule-number {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Creepster', cursive;
             font-size: 2.5rem;
-            color: var(--accent);
+            color: #ff0000;
             margin-right: 20px;
             min-width: 60px;
             text-align: center;
@@ -465,36 +312,38 @@
 
         .rule-content h3 {
             font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: var(--text);
+            margin-bottom: 10px;
+            color: #fff;
+            font-family: 'Special Elite', cursive;
         }
 
         .rule-content p {
-            color: var(--accent-light);
-            font-size: 1.2rem;
+            color: #b19cd9;
+            font-size: 1.1rem;
             line-height: 1.6;
         }
 
         .warning-box {
-            background: rgba(178, 34, 34, 0.2);
-            border: 2px solid var(--warning);
-            padding: 30px;
+            background: rgba(178, 34, 34, 0.3);
+            border: 2px solid #ff0000;
+            padding: 25px;
             border-radius: 10px;
-            margin-top: 50px;
+            margin-top: 40px;
             text-align: center;
         }
 
         .warning-box p {
             font-size: 1.5rem;
-            color: var(--warning);
-            font-family: 'Orbitron', sans-serif;
+            color: #ff6b6b;
+            font-family: 'Creepster', cursive;
             letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
 
         footer {
             text-align: center;
-            padding: 60px 20px 40px;
-            margin-top: 80px;
+            padding: 40px 0;
+            margin-top: 60px;
             position: relative;
         }
 
@@ -506,169 +355,249 @@
             transform: translateX(-50%);
             width: 80%;
             height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        }
-
-        footer p {
-            color: var(--accent-light);
-            margin: 15px 0;
-            font-size: 1.1rem;
+            background: linear-gradient(90deg, transparent, #8a2be2, transparent);
         }
 
         .footer-warning {
-            font-weight: bold;
-            font-size: 1.5rem;
-            color: var(--warning);
-            margin: 25px 0;
-            text-shadow: 0 0 15px rgba(255, 107, 107, 0.4);
-            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: #ff6b6b;
+            margin: 20px 0;
+            font-family: 'Creepster', cursive;
             letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 30px 0;
+        /* Ghost effects */
+        .ghost {
+            position: absolute;
+            width: 100px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50% 50% 0 0;
+            z-index: 1;
+            opacity: 0.3;
+            animation: float-ghost 15s infinite ease-in-out;
         }
 
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
+        .ghost::before, .ghost::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
-            background: rgba(138, 43, 226, 0.2);
-            color: var(--accent-light);
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
         }
 
-        .social-links a:hover {
-            background: var(--accent);
-            color: var(--text);
-            transform: translateY(-5px);
+        .ghost::before {
+            width: 30px;
+            height: 30px;
+            top: 20px;
+            left: 20px;
+            box-shadow: 30px 0 0 rgba(255, 255, 255, 0.2);
         }
 
-        .copyright {
-            margin-top: 40px;
-            font-size: 0.9rem;
-            color: rgba(177, 156, 217, 0.7);
+        .ghost::after {
+            width: 20px;
+            height: 30px;
+            top: 60px;
+            left: 15px;
+            box-shadow: 
+                15px 10px 0 rgba(255, 255, 255, 0.2),
+                30px 10px 0 rgba(255, 255, 255, 0.2),
+                45px 10px 0 rgba(255, 255, 255, 0.2);
         }
 
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 20px;
+        .ghost-1 {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .ghost-2 {
+            top: 30%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        .ghost-3 {
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 6s;
+        }
+
+        /* Mirror effect */
+        .mirror-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            background: radial-gradient(circle at center, transparent 60%, rgba(255,255,255,0.05) 100%);
+            mix-blend-mode: overlay;
+        }
+
+        /* Animations */
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+                text-shadow: 
+                    0 0 10px #8a2be2,
+                    0 0 20px #8a2be2,
+                    0 0 30px #8a2be2;
             }
-            
-            .hero h2 {
+            20%, 24%, 55% {
+                opacity: 0.8;
+                text-shadow: 
+                    0 0 5px #8a2be2,
+                    0 0 10px #8a2be2;
+            }
+        }
+
+        @keyframes glow-pulse {
+            0% {
+                text-shadow: 
+                    0 0 10px #ff00ff,
+                    0 0 20px #ff00ff,
+                    0 0 30px #ff00ff;
+                transform: scale(1);
+            }
+            100% {
+                text-shadow: 
+                    0 0 15px #ff00ff,
+                    0 0 30px #ff00ff,
+                    0 0 45px #ff00ff;
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes float-ghost {
+            0%, 100% {
+                transform: translate(0, 0);
+                opacity: 0.2;
+            }
+            25% {
+                transform: translate(20px, -20px);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(0, -40px);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translate(-20px, -20px);
+                opacity: 0.3;
+            }
+        }
+
+        .scan-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            z-index: 100;
+            animation: scan 4s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scan {
+            0% {
+                top: 0;
+            }
+            100% {
+                top: 100%;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .title {
                 font-size: 3.5rem;
             }
-            
-            .hero p {
-                font-size: 1.5rem;
+            .section-title {
+                font-size: 2.8rem;
             }
-            
-            nav ul {
-                gap: 15px;
+            .poster-title {
+                font-size: 3rem;
             }
-            
-            .mirror-grid {
-                grid-template-columns: 1fr;
+            .mirror-prof {
+                font-size: 1.8rem;
             }
-
             .team-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 480px) {
-            .hero h2 {
+            .title {
                 font-size: 2.8rem;
-                letter-spacing: 2px;
             }
-            
-            .hero p {
-                font-size: 1.3rem;
+            .section-title {
+                font-size: 2.2rem;
             }
-            
-            .warning {
+            .poster-title {
+                font-size: 2.5rem;
+            }
+            .mirror-prof {
                 font-size: 1.5rem;
-                padding: 10px 20px;
             }
-            
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
             .team-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .team-section h2 {
-                font-size: 2.5rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Ghost elements -->
+    <div class="ghost ghost-1"></div>
+    <div class="ghost ghost-2"></div>
+    <div class="ghost ghost-3"></div>
+    
+    <!-- Mirror effect overlay -->
+    <div class="mirror-effect"></div>
+    
+    <!-- Scan line effect -->
+    <div class="scan-line"></div>
+    
     <div class="container">
         <header>
-            <div class="logo">
-                <h1>MIRROR MIRROR</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#video">Video</a></li>
-                    <li><a href="#team">Team</a></li>
-                </ul>
-            </nav>
+            <h1 class="title">Dimensional</h1>
+            <p class="subtitle">Experience reflections across multiple dimensions and realities, each with its own rules and consequences.</p>
         </header>
 
-        <section class="hero">
-            <h2>MIRROR MIRROR</h2>
-            <p>A journey through reflections where reality bends and truth becomes elusive</p>
-            <div class="warning">
-                DON'T BREAK THE RULES
-            </div>
-            <p>Enter a world where every reflection tells a story and nothing is as it seems</p>
-        </section>
+        <div class="divider"></div>
 
-        <section class="mirror-grid">
-            <div class="mirror-card">
-                <i class="fas fa-cogs"></i>
-                <h4>Advanced Technology</h4>
-                <p>Utilizing cutting-edge reflection and rendering technology to create immersive experiences that blur the line between reality and illusion.</p>
+        <h2 class="section-title">Motion Poster</h2>
+        
+        <div class="poster-container">
+            <img src="https://cdn.ironman.my.id/i/xltg2m.jpg" alt="Mirror Mirror Motion Poster" class="poster-image">
+            <div class="poster-overlay"></div>
+            <div class="poster-title">TITLE POSTER</div>
+            <div class="poster-details">
+                <div class="mirror-prof">MIRROR PROF.</div>
+                <div class="timer">0:08 / 0:08</div>
             </div>
-            <div class="mirror-card">
-                <i class="fas fa-theater-masks"></i>
-                <h4>Immersive Story</h4>
-                <p>A narrative that evolves based on your choices and reflections, where every decision creates a ripple across dimensions.</p>
-            </div>
-            <div class="mirror-card">
-                <i class="fas fa-vr-cardboard"></i>
-                <h4>Multi-Dimensional</h4>
-                <p>Experience reflections across multiple dimensions and realities, each with its own rules and consequences.</p>
-            </div>
-        </section>
+        </div>
+        
+        <div class="credit">
+            Created by <strong>@__.yadhuu.__</strong>
+        </div>
 
-        <section id="video" class="video-section">
-            <h2 class="team-section">THE GAME TRAILER</h2>
-            <div class="video-container">
-                <video controls poster="https://cdn.ironman.my.id/i/xltg2m.jpg">
-                    <source src="https://cdn.ironman.my.id/i/86jnep.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </section>
-
-        <section id="team" class="team-section">
-            <h2>THE CREATORS</h2>
+        <div class="divider"></div>
+        
+        <div class="team-section">
+            <h2 class="section-title">The Creators</h2>
             <div class="team-grid">
                 <div class="team-member">
                     <h3>AAMIR</h3>
@@ -692,17 +621,19 @@
                     <h3>SHAJHON</h3>
                 </div>
             </div>
-        </section>
-
-        <section id="about" class="rules-section">
-            <h2>ABOUT THE GAME</h2>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="rules-section">
+            <h2 class="section-title">About The Game</h2>
             <div class="rules-container">
-                <p style="text-align: center; font-size: 1.5rem; margin-bottom: 50px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <p style="text-align: center; font-size: 1.5rem; margin-bottom: 50px; color: #b19cd9;">
                     Mirror Mirror is not just a game - it's an experience that will challenge your perception of reality. 
-                    Play carefully, as the reflections hold more power than you realize. This is a true game of perception and consequence.
+                    Play carefully, as the reflections hold more power than you realize.
                 </p>
                 
-                <h2 style="margin-bottom: 40px; text-align: center;">THE RULES</h2>
+                <h2 class="section-title" style="margin-bottom: 40px;">The Rules</h2>
                 
                 <div class="rule">
                     <div class="rule-number">1</div>
@@ -732,61 +663,13 @@
                     <p>WARNING: FAILURE TO FOLLOW THESE RULES MAY HAVE UNPREDICTABLE CONSEQUENCES</p>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
 
     <footer>
-        <p>Prepare to question your reality as Mirror Mirror takes you on a journey through fractured dimensions</p>
-        <p class="footer-warning">Beware what you see</p>
+        <p class="footer-warning">Beware what you see in the mirror</p>
+        <p>© 2025 Mirror Mirror. All rights reserved.</p>
         <p>Enter at your own risk - reflections may reveal more than you expect</p>
-        
-        <div class="social-links">
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-discord"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-        </div>
-        
-        <p class="copyright">© 2025 Mirror Mirror. All rights reserved.</p>
     </footer>
-
-    <script>
-        // Animation for mirror cards
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.mirror-card');
-            
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'translateY(-15px)';
-                    card.style.boxShadow = '0 20px 40px rgba(138, 43, 226, 0.4)';
-                });
-                
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'translateY(0)';
-                    card.style.boxShadow = '0 15px 35px rgba(138, 43, 226, 0.3)';
-                });
-            });
-            
-            // Text animation for warning
-            const warning = document.querySelector('.warning');
-            setInterval(() => {
-                warning.style.textShadow = `0 0 15px rgba(255, ${Math.floor(Math.random() * 100) + 50}, ${Math.floor(Math.random() * 100) + 50}, 0.8)`;
-            }, 1000);
-            
-            // Team member hover effect
-            const members = document.querySelectorAll('.team-member');
-            members.forEach(member => {
-                member.addEventListener('mouseenter', () => {
-                    member.style.transform = 'translateY(-15px)';
-                    member.style.boxShadow = '0 15px 30px rgba(138, 43, 226, 0.5)';
-                });
-                
-                member.addEventListener('mouseleave', () => {
-                    member.style.transform = 'translateY(0)';
-                    member.style.boxShadow = '0 10px 25px rgba(138, 43, 226, 0.4)';
-                });
-            });
-        });
-    </script>
 </body>
 </html>
