@@ -115,6 +115,7 @@
             border: 3px solid #8a2be2;
             transform: perspective(1000px) rotateX(5deg);
             transition: transform 0.5s;
+            cursor: pointer;
         }
 
         .poster-container:hover {
@@ -367,62 +368,6 @@
             text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
 
-        /* Ghost effects */
-        .ghost {
-            position: absolute;
-            width: 100px;
-            height: 120px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50% 50% 0 0;
-            z-index: 1;
-            opacity: 0.3;
-            animation: float-ghost 15s infinite ease-in-out;
-        }
-
-        .ghost::before, .ghost::after {
-            content: '';
-            position: absolute;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-        }
-
-        .ghost::before {
-            width: 30px;
-            height: 30px;
-            top: 20px;
-            left: 20px;
-            box-shadow: 30px 0 0 rgba(255, 255, 255, 0.2);
-        }
-
-        .ghost::after {
-            width: 20px;
-            height: 30px;
-            top: 60px;
-            left: 15px;
-            box-shadow: 
-                15px 10px 0 rgba(255, 255, 255, 0.2),
-                30px 10px 0 rgba(255, 255, 255, 0.2),
-                45px 10px 0 rgba(255, 255, 255, 0.2);
-        }
-
-        .ghost-1 {
-            top: 10%;
-            left: 5%;
-            animation-delay: 0s;
-        }
-
-        .ghost-2 {
-            top: 30%;
-            right: 10%;
-            animation-delay: 3s;
-        }
-
-        .ghost-3 {
-            bottom: 20%;
-            left: 15%;
-            animation-delay: 6s;
-        }
-
         /* Mirror effect */
         .mirror-effect {
             position: fixed;
@@ -434,6 +379,52 @@
             z-index: 1;
             background: radial-gradient(circle at center, transparent 60%, rgba(255,255,255,0.05) 100%);
             mix-blend-mode: overlay;
+        }
+
+        /* Interactive Mirror */
+        .interactive-mirror {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 400px;
+            border: 3px solid #8a2be2;
+            border-radius: 15px;
+            background: url('https://cdn.ironman.my.id/i/xltg2m.jpg') center/cover;
+            box-shadow: 
+                0 0 50px rgba(138, 43, 226, 0.8),
+                0 0 100px rgba(255, 0, 255, 0.6);
+            z-index: 100;
+            display: none;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .mirror-reflection {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(255,255,255,0.1) 0%, 
+                rgba(255,255,255,0.05) 50%,
+                rgba(255,255,255,0.1) 100%);
+            pointer-events: none;
+        }
+        
+        .mirror-warning {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: #ff0000;
+            font-family: 'Creepster', cursive;
+            font-size: 1.8rem;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+            animation: blink 1.5s infinite;
         }
 
         /* Animations */
@@ -478,24 +469,10 @@
                 transform: translateY(-10px);
             }
         }
-
-        @keyframes float-ghost {
-            0%, 100% {
-                transform: translate(0, 0);
-                opacity: 0.2;
-            }
-            25% {
-                transform: translate(20px, -20px);
-                opacity: 0.3;
-            }
-            50% {
-                transform: translate(0, -40px);
-                opacity: 0.4;
-            }
-            75% {
-                transform: translate(-20px, -20px);
-                opacity: 0.3;
-            }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
         }
 
         .scan-line {
@@ -559,16 +536,17 @@
     </style>
 </head>
 <body>
-    <!-- Ghost elements -->
-    <div class="ghost ghost-1"></div>
-    <div class="ghost ghost-2"></div>
-    <div class="ghost ghost-3"></div>
-    
     <!-- Mirror effect overlay -->
     <div class="mirror-effect"></div>
     
     <!-- Scan line effect -->
     <div class="scan-line"></div>
+    
+    <!-- Interactive Mirror (hidden by default) -->
+    <div class="interactive-mirror">
+        <div class="mirror-reflection"></div>
+        <div class="mirror-warning">DO NOT LOOK DIRECTLY</div>
+    </div>
     
     <div class="container">
         <header>
@@ -580,7 +558,7 @@
 
         <h2 class="section-title">Motion Poster</h2>
         
-        <div class="poster-container">
+        <div class="poster-container" id="posterTrigger">
             <img src="https://cdn.ironman.my.id/i/xltg2m.jpg" alt="Mirror Mirror Motion Poster" class="poster-image">
             <div class="poster-overlay"></div>
             <div class="poster-title">TITLE POSTER</div>
@@ -671,5 +649,60 @@
         <p>© 2025 Mirror Mirror. All rights reserved.</p>
         <p>Enter at your own risk - reflections may reveal more than you expect</p>
     </footer>
+
+    <script>
+        // Interactive mirror effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const poster = document.getElementById('posterTrigger');
+            const interactiveMirror = document.querySelector('.interactive-mirror');
+            
+            // Show interactive mirror when clicking on poster
+            poster.addEventListener('click', function() {
+                interactiveMirror.style.display = 'block';
+                
+                // Add flickering effect to the mirror
+                let flickerCount = 0;
+                const flickerInterval = setInterval(() => {
+                    interactiveMirror.style.opacity = Math.random() > 0.5 ? 0.8 : 1;
+                    flickerCount++;
+                    
+                    if (flickerCount > 15) {
+                        clearInterval(flickerInterval);
+                        interactiveMirror.style.opacity = 1;
+                    }
+                }, 200);
+            });
+            
+            // Hide interactive mirror when clicking on it
+            interactiveMirror.addEventListener('click', function() {
+                this.style.display = 'none';
+            });
+            
+            // Add random glitch effect to text
+            const glitchElements = document.querySelectorAll('.title, .section-title');
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    glitchElements.forEach(el => {
+                        el.style.textShadow = `0 0 ${Math.floor(Math.random() * 20) + 10}px rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 100)}, 255, 0.8)`;
+                        setTimeout(() => {
+                            el.style.textShadow = '';
+                        }, 300);
+                    });
+                }
+            }, 2000);
+            
+            // Add warning animation to rules
+            const warnings = document.querySelectorAll('.warning-box p, .footer-warning');
+            setInterval(() => {
+                warnings.forEach(warning => {
+                    warning.style.transform = 'scale(1.05)';
+                    warning.style.color = `hsl(${Math.floor(Math.random() * 30)}, 100%, 70%)`;
+                    setTimeout(() => {
+                        warning.style.transform = '';
+                    }, 500);
+                });
+            }, 3000);
+        });
+    </script>
 </body>
 </html>
