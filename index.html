@@ -1,54 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mirror Horror</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mirror mirror</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <!-- Intro video full screen -->
-  <video id="introVideo" autoplay muted playsinline class="fullscreen-video">
-    <source src="https://cdn.ironman.my.id/i/86jnep.mp4" type="video/mp4">
-  </video>
-
-  <!-- Main content (hidden at first) -->
-  <div id="mainContent" class="hidden">
-    <!-- Background music -->
-    <audio autoplay loop>
-      <source src="https://cdn.ironman.my.id/i/g8zux1.mp4" type="audio/mp4">
+    <div id="loading-screen">
+        <div class="loader"></div>
+    </div>
+    
+    <div id="video-container">
+        <video id="video-background" poster="https://cdn.ironman.my.id/i/xltg2m.jpg">
+            <source src="https://cdn.ironman.my.id/i/g8zux1.mp4" type="video/mp4">
+        </video>
+    </div>
+    
+    <audio id="bgm" loop>
+        <source src="https://cdn.ironman.my.id/i/g8zux1.mp4" type="audio/mp4">
     </audio>
-
-    <!-- Mirror video -->
-    <div class="mirror-box">
-      <video id="mirrorVideo" poster="https://cdn.ironman.my.id/i/xltg2m.jpg" controls playsinline>
-        <source src="https://cdn.ironman.my.id/i/86jnep.mp4" type="video/mp4">
-      </video>
-      <div class="click-overlay">CLICK TO PLAY</div>
+    
+    <div id="audio-control">🔊</div>
+    
+    <div class="content">
+        <h1 class="glitch-effect">mirror-web.vercel.app</h1>
+        
+        <h2>mirror mirror</h2>
+        <p>About</p>
+        
+        <div class="separator"></div>
+        
+        <h2>mirror mirror</h2>
+        <p>DON'T BREAK THE RULES</p>
+        
+        <div class="separator"></div>
+        
+        <h2>coming soon</h2>
+        
+        <div class="mirror-text">
+            MIRROR<br>
+            MIRROR
+        </div>
+        
+        <div class="names">
+            <strong>AAMIR | RASAL | __.yadhu.__ | SAFVAN | JOYAL</strong><br>
+            | VISHU | SHAJHON
+        </div>
+        
+        <p class="coming-soon">Coming soon...</p>
+        
+        <button id="play-button">Click to Play</button>
+        
+        <div class="footer">
+            © 2025 Mirror Mirror. All rights reserved. Beware what you see.
+        </div>
     </div>
 
-    <!-- Coming Soon Text -->
-    <h1 class="coming">COMING SOON</h1>
-    <p class="about">___.YADHU.___</p>
-  </div>
-
-  <script>
-    const intro = document.getElementById('introVideo');
-    const mainContent = document.getElementById('mainContent');
-
-    intro.onended = () => {
-      intro.style.display = "none";
-      mainContent.classList.remove('hidden');
-    };
-
-    const mirrorVideo = document.getElementById('mirrorVideo');
-    const clickOverlay = document.querySelector('.click-overlay');
-
-    mirrorVideo.addEventListener('play', () => {
-      clickOverlay.style.display = 'none';
-    });
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
