@@ -1128,7 +1128,7 @@
     <div class="particles"></div>
     
     <div class="audio-control" id="audioControl">
-        <i class="fas fa-volume-up"></i>
+        <i class="fas fa-volume-mute"></i>
     </div>
     
     <div class="container">
@@ -1288,23 +1288,24 @@
         <p class="copyright">© 2025 Mirror Mirror. All rights reserved.created by @__. yadhuu.__</p>
     </footer>
 
-    <audio id="bgAudio" loop>
+    <!-- Audio Elements -->
+    <audio id="bgAudio" loop muted>
         <source src="https://assets.mixkit.co/sfx/preview/mixkit-horror-ambience-492.mp3" type="audio/mpeg">
     </audio>
     
-    <audio id="mirrorAudio">
+    <audio id="mirrorAudio" muted>
         <source src="https://assets.mixkit.co/sfx/preview/mixkit-horror-laugh-428.mp3" type="audio/mpeg">
     </audio>
     
-    <audio id="jumpscareAudio">
+    <audio id="jumpscareAudio" muted>
         <source src="https://assets.mixkit.co/sfx/preview/mixkit-woman-scream-1235.mp3" type="audio/mpeg">
     </audio>
     
-    <audio id="whisperAudio">
+    <audio id="whisperAudio" muted>
         <source src="https://assets.mixkit.co/sfx/preview/mixkit-creepy-whisper-568.mp3" type="audio/mpeg">
     </audio>
     
-    <audio id="heartbeatAudio" loop>
+    <audio id="heartbeatAudio" loop muted>
         <source src="https://assets.mixkit.co/sfx/preview/mixkit-single-heartbeat-766.mp3" type="audio/mpeg">
     </audio>
 
@@ -1337,7 +1338,13 @@
             jumpscareAudio.volume = 0.7;
             whisperAudio.volume = 0.4;
             heartbeatAudio.volume = 0.3;
+            
+            // All audio starts muted by default
             bgAudio.muted = true;
+            mirrorAudio.muted = true;
+            jumpscareAudio.muted = true;
+            whisperAudio.muted = true;
+            heartbeatAudio.muted = true;
             
             // Show interactive mirror
             function showMirror() {
@@ -1345,9 +1352,9 @@
                 interactiveMirror.style.pointerEvents = 'all';
                 cameraPermission.style.display = 'flex';
                 
-                // Play mirror sound
+                // Play mirror sound (respects mute state)
                 mirrorAudio.currentTime = 0;
-                mirrorAudio.play();
+                mirrorAudio.play().catch(e => console.log("Mirror audio play prevented:", e));
             }
             
             // Hide interactive mirror
@@ -1376,9 +1383,9 @@
                             cameraFeed.srcObject = stream;
                             cameraPermission.style.display = 'none';
                             
-                            // Start heartbeat
+                            // Start heartbeat (respects mute state)
                             heartbeatAudio.currentTime = 0;
-                            heartbeatAudio.play();
+                            heartbeatAudio.play().catch(e => console.log("Heartbeat audio play prevented:", e));
                             
                             // Show reflection after a delay
                             setTimeout(() => {
@@ -1388,7 +1395,7 @@
                                 if (Math.random() > 0.3) {
                                     setTimeout(() => {
                                         jumpscareAudio.currentTime = 0;
-                                        jumpscareAudio.play();
+                                        jumpscareAudio.play().catch(e => console.log("Jumpscare audio play prevented:", e));
                                         
                                         // Visual jumpscare effect
                                         document.body.style.backgroundColor = "#ff0000";
@@ -1412,19 +1419,33 @@
                 }
             }
             
-            // Toggle audio
+            // Toggle all audio elements
             function toggleAudio() {
-                bgAudio.muted = !bgAudio.muted;
-                audioControl.innerHTML = bgAudio.muted ? 
+                const isMuted = !bgAudio.muted;
+                
+                // Toggle mute state for all audio elements
+                bgAudio.muted = isMuted;
+                mirrorAudio.muted = isMuted;
+                jumpscareAudio.muted = isMuted;
+                whisperAudio.muted = isMuted;
+                heartbeatAudio.muted = isMuted;
+                
+                // Update icon
+                audioControl.innerHTML = isMuted ? 
                     '<i class="fas fa-volume-mute"></i>' : 
                     '<i class="fas fa-volume-up"></i>';
+                
+                // If unmuting, play background audio
+                if (!isMuted && bgAudio.paused) {
+                    bgAudio.play().catch(e => console.log("Background audio play prevented:", e));
+                }
             }
             
-            // Play whisper at random intervals
+            // Play whisper at random intervals (respects mute state)
             function playWhisper() {
                 if (!bgAudio.muted && Math.random() > 0.8) {
                     whisperAudio.currentTime = 0;
-                    whisperAudio.play();
+                    whisperAudio.play().catch(e => console.log("Whisper audio play prevented:", e));
                 }
                 setTimeout(playWhisper, Math.random() * 30000 + 10000);
             }
@@ -1541,14 +1562,14 @@
                 });
             }, 3000);
             
-            // Start background audio with user interaction
+            // Start background audio with user interaction (but keep muted)
             document.addEventListener('click', function initAudio() {
                 if (bgAudio.paused) {
-                    bgAudio.play().catch(e => console.log("Audio play prevented:", e));
+                    bgAudio.play().catch(e => console.log("Background audio play prevented:", e));
                 }
                 document.removeEventListener('click', initAudio);
-            });
+            }, { once: true });
         });
     </script>
 </body>
-</html>
+                                                        </html>
