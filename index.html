@@ -418,6 +418,129 @@
             outline: none;
         }
 
+        /* YouTube Link Section */
+        .youtube-section {
+            margin: 60px auto;
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            padding: 30px;
+            background: rgba(25, 15, 40, 0.6);
+            border-radius: 15px;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            backdrop-filter: blur(5px);
+            transition: all 0.4s ease;
+        }
+
+        .youtube-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(138, 43, 226, 0.4);
+            border-color: var(--accent);
+        }
+
+        .youtube-section h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(177, 156, 217, 0.7);
+        }
+
+        .youtube-section p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: var(--accent-light);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .youtube-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 35px;
+            background: rgba(255, 0, 0, 0.15);
+            border: 2px solid #ff0000;
+            border-radius: 50px;
+            color: #ff6b6b;
+            font-size: 1.6rem;
+            font-family: 'Orbitron', sans-serif;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: pulse 3s infinite;
+        }
+
+        .youtube-link:hover {
+            background: #ff0000;
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+        }
+
+        .youtube-link i {
+            transition: transform 0.3s;
+        }
+
+        .youtube-link:hover i {
+            transform: scale(1.2);
+        }
+
+        .youtube-link::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s;
+        }
+
+        .youtube-link:hover::after {
+            transform: translateX(100%);
+        }
+
+        .youtube-stats {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+            color: var(--accent-light);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 25px;
+            background: rgba(40, 20, 80, 0.3);
+            border-radius: 10px;
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: var(--text);
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(177, 156, 217, 0.5);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
         /* Team Section */
         .team-section {
             margin: 100px 0;
@@ -1065,6 +1188,24 @@
                 width: 90%;
                 height: 60vh;
             }
+            
+            .youtube-section h3 {
+                font-size: 2rem;
+            }
+            
+            .youtube-link {
+                font-size: 1.3rem;
+                padding: 12px 25px;
+            }
+            
+            .stat-item {
+                min-width: 120px;
+                padding: 10px 15px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1110,6 +1251,19 @@
             
             .camera-permission p {
                 font-size: 1.1rem;
+            }
+            
+            .youtube-stats {
+                gap: 15px;
+            }
+            
+            .stat-item {
+                min-width: 100px;
+                padding: 8px 12px;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -1180,6 +1334,32 @@
                     <source src="https://cdn.ironman.my.id/i/86jnep.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
+            </div>
+            
+            <!-- YouTube Link Section -->
+            <div class="youtube-section">
+                <h3>WATCH THE FULL EXPERIENCE</h3>
+                <p>For the complete horror journey, view our full-length trailer on YouTube. Prepare yourself for an experience that will challenge your perception of reality.</p>
+                
+                <a href="https://youtu.be/4sVhYM8mt7A" target="_blank" class="youtube-link">
+                    <i class="fab fa-youtube"></i>
+                    YouTube Trailer
+                </a>
+                
+                <div class="youtube-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">2M+</div>
+                        <div class="stat-label">Views</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Approval</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4.8★</div>
+                        <div class="stat-label">Rating</div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1329,6 +1509,7 @@
             const eyesContainer = document.getElementById('eyesContainer');
             const ghost = document.querySelector('.ghost');
             const flicker = document.querySelector('.flicker');
+            const youtubeLink = document.querySelector('.youtube-link');
             
             let cameraStream = null;
             
@@ -1450,6 +1631,17 @@
                 setTimeout(playWhisper, Math.random() * 30000 + 10000);
             }
             
+            // YouTube link hover effect
+            function youtubeHoverEffect() {
+                const colors = ['#ff0000', '#ff6b6b', '#ff0000', '#8a2be2', '#ff0000'];
+                let currentIndex = 0;
+                
+                setInterval(() => {
+                    youtubeLink.style.textShadow = `0 0 15px ${colors[currentIndex]}`;
+                    currentIndex = (currentIndex + 1) % colors.length;
+                }, 500);
+            }
+            
             // Event listeners
             warningBtn.addEventListener('click', showMirror);
             footerWarning.addEventListener('click', showMirror);
@@ -1499,6 +1691,7 @@
             // Initialize
             createParticles();
             playWhisper();
+            youtubeHoverEffect();
             
             // Random ghost appearances
             setInterval(() => {
